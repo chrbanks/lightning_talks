@@ -1,0 +1,43 @@
+<%= content_tag :p, class: 'space-bottom fill-green dark pad2' do %>
+  <%= notice %>
+<% end if notice %>
+
+<header class='clearfix space-bottom'>
+  <h3 class='col-xs-12'>Users</h3>
+</header>
+
+<table class='breathe'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User</th>
+      <th>Email</th>
+      <th>Admin</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to user.full_name, admin_user_path(user) %>
+        </td>
+        <td>
+          <%= user.username %>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+        <td>
+          <%= user.admin? %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_admin_user_path(user) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to new_admin_user_path, class: 'btn btn-primary' do %>
+  <i class='icon icon-plus icon-sm pad0r'></i>New User
+<% end %>

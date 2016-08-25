@@ -1,0 +1,22 @@
+<%= form_for([:admin, @user]) do |f| %>
+
+  <%= content_tag :small, @user.errors.full_messages_for(:base).join(', '), class: 'error-message space-bottom' if @user.errors.include?(:base) %>
+
+  <fieldset>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: 'stretch' %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: 'stretch' %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :username %>
+    <%= f.text_field :username, class: 'stretch' %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'stretch' %>
+  </fieldset>
+  <%= f.submit nil, class: 'btn btn-primary space-bottom' %>
+<% end %>

@@ -1,0 +1,38 @@
+<%= content_tag :p, class: 'space-bottom fill-green dark pad2' do %>
+  <%= notice %>
+<% end if notice %>
+
+<header class='clearfix space-bottom'>
+  <h3 class='col-xs-12'>Lightning Talk Sessions</h3>
+</header>
+
+<table class='breathe'>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Title</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @meetings.each do |meeting| %>
+      <tr>
+        <td>
+          <%= format_date(meeting.date.to_s) %>
+        </td>
+        <td>
+          <%= link_to meeting.title, meeting %>
+        </td>
+        <td>
+          <%= meeting.location %>
+        </td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  <% if current_user.admin? %>
+    <%= link_to new_meeting_path, class: 'btn btn-primary' do %>
+    <i class='icon icon-plus icon-sm pad0r'></i>New Lightning talk session
+  <% end %>
+<% end %>

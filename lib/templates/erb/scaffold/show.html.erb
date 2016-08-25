@@ -1,0 +1,19 @@
+<%%= content_tag :p, class: 'space-bottom fill-green dark pad2' do %>
+  <%%= notice %>
+<%% end if notice %>
+
+<h2 class='space-bottom1'><%= singular_table_name.titleize %></h2>
+
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+<p>
+  <strong><%= attribute.human_name %>:</strong>
+  <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+</p>
+
+<% end -%>
+
+<p>
+  <%%= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) %> |
+  <%%= link_to 'Destroy', @<%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' } %> |  
+  <%%= link_to 'View all', <%= index_helper %>_path %>
+</p>

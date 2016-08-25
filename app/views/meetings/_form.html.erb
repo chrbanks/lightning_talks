@@ -1,0 +1,17 @@
+<%= form_for(@meeting) do |f| %>
+  <%= content_tag :small, @meeting.errors.full_messages_for(:base).join(', '), class: 'error-message space-bottom' if @meeting.errors.include?(:base) %>
+
+  <fieldset>
+    <%= f.label :date %>
+    <%= f.datetime_local_field :date, class: 'stretch' %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'stretch' %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :location %>
+    <%= f.text_field :location, class: 'stretch' %>
+  </fieldset>
+  <%= f.submit nil, class: 'btn btn-primary space-bottom' %>
+<% end %>

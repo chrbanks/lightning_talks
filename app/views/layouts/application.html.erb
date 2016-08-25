@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LightningTalks</title>
+    <title>Lightning Talks</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class='fill-white-sm'>
+    <%= render 'layouts/header' %>
+    <div id='wrap' class='container-fluid contain'>
+    <div class='box round fill-white pad4'>
+      <%= yield %>
+    </div>
+    <% if Rails.env.development? %>
+      <%= debug(params) %>
+    <% end %>
+  </div>
   </body>
 </html>

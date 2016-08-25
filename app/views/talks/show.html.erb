@@ -1,0 +1,31 @@
+<%= content_tag :p, class: 'space-bottom fill-green dark pad2' do %>
+  <%= notice %>
+<% end if notice %>
+
+<h2 class='space-bottom1'><%= @talk.title %></h2>
+
+<p>
+  <strong>Lightning talk session:</strong>
+  <%= @talk.meeting.title %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @talk.user.full_name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @talk.description %>
+</p>
+
+
+<p>
+  <% if current_user.admin? || (signed_in? && current_user.id == @talk.user.id) %>
+    <%= link_to 'Edit', edit_meeting_talk_path(@meeting, @talk) %> |
+    <% unless DateTime.now > @meeting.date %>
+      <%= link_to 'Destroy', meeting_talk_path(@meeting, @talk), method: :delete, data: { confirm: 'Are you sure?' } %> |
+    <% end %>
+  <% end %>
+  <%= link_to 'View all', meeting_path(@meeting) %>
+</p>

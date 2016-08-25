@@ -1,0 +1,33 @@
+<%%= content_tag :p, class: 'space-bottom fill-green dark pad2' do %>
+  <%%= notice %>
+<%% end if notice %>
+<h2 class='space-bottom1'><%= plural_table_name.titleize %></h2>
+<table class='breathe'>
+  <thead>
+    <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <th><%= attribute.human_name %></th>
+<% end -%>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <td>
+          <%%= <%= singular_table_name %>.<%= attribute.name %> %>
+        </td>
+<% end -%>
+        <td class='text-right'>
+          <%%= link_to 'Show', <%= singular_table_name %>, class: 'pad1' %>
+          <%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'pad1' %>
+          <%%= link_to 'Destroy', <%= singular_table_name %>, method: :delete, class: 'pad1', data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <%% end %>
+  </tbody>
+</table>
+<%%= link_to new_<%= singular_table_name %>_path, class: 'btn btn-primary' do %>
+  <i class='icon icon-plus icon-sm pad0r'></i>New <%= human_name %>
+<%% end %>

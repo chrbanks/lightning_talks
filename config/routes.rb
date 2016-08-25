@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :admin do
+    root 'application#index'
+    resources :users
+  end
+
+  resources :meetings do
+    resources :talks
+  end
+
+  get  'signin' => 'sessions#new'
+  post 'saml/consume' => 'sessions#create'
+  post 'sessions/create' => 'sessions#create'
+
+  root 'meetings#index'
 end
