@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'application#index'
     resources :users
+    resources :meetings do
+      resources :talks, only: [:new, :create, :edit, :update]
+    end
   end
 
   resources :meetings do

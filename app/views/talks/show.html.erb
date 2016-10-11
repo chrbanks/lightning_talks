@@ -21,11 +21,15 @@
 
 
 <p>
-  <% if current_user.admin? || (signed_in? && current_user.id == @talk.user.id) %>
-    <%= link_to 'Edit', edit_meeting_talk_path(@meeting, @talk) %> |
-    <% unless DateTime.now > @meeting.date %>
-      <%= link_to 'Destroy', meeting_talk_path(@meeting, @talk), method: :delete, data: { confirm: 'Are you sure?' } %> |
-    <% end %>
+  <% if current_user.admin? %>
+    <%= link_to 'Edit (Admin)', edit_admin_meeting_talk_path(@meeting, @talk), class: 'btn btn-loud' %>
   <% end %>
-  <%= link_to 'View all', meeting_path(@meeting) %>
+  <% if signed_in? && current_user.id == @talk.user.id %>
+    <%= link_to 'Edit', edit_meeting_talk_path(@meeting, @talk), class: 'btn btn-primary' %>
+  <% end %>
+  <% if (DateTime.now < @meeting.date && (signed_in? && current_user.id == @talk.user_id)) || current_user.admin? %>
+    <%= link_to 'Destroy', meeting_talk_path(@meeting, @talk),
+        method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  <% end %>
+  <%= link_to 'View all', meeting_path(@meeting), class: 'btn btn-default' %>
 </p>

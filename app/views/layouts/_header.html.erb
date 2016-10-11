@@ -2,6 +2,9 @@
   <div class='container-fluid contain'>
     <nav class='col-sm-12 text-right pad1y contain clearfix noprint'>
       <%= link_to 'Home', root_path, class: 'logo pad1y pull-left text-left' %>
+      <% if current_user.admin? %>
+        <%= link_to 'Admin', admin_root_path, class: 'logo pad1y pull-left text-left' %>
+      <% end %>
       <a href='#dropdown' class='hidden-xs authmenu droplink quiet pad1 block round animate pull-right'>
         <%= image_tag current_user.gravatar_url, class: '', width: 20 %>
         <%= current_user.full_name %>

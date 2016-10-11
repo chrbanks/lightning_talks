@@ -22,10 +22,11 @@
 
 <p>
   <% if current_user.admin? %>
-    <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
-    <%= link_to 'Destroy', @meeting, method: :delete, data: { confirm: 'Are you sure?' } %> |
+    <%= link_to 'Edit', edit_meeting_path(@meeting), class: 'btn btn-primary' %>
+    <%= link_to 'Destroy', @meeting, method: :delete, data: { confirm: 'Are you sure?' },
+        class: 'btn btn-danger' %>
   <% end %>
-  <%= link_to 'View all', root_path %>
+  <%= link_to 'View all', root_path, class: 'btn btn-default' %>
 </p>
 
 <hr>
@@ -60,6 +61,12 @@
 
 <%= link_to new_meeting_talk_path(@meeting), class: 'btn btn-primary' do %>
   <i class='icon icon-plus icon-sm pad0r'></i>New Talk
+<% end %>
+
+<% if current_user.admin? %>
+  <%= link_to new_admin_meeting_talk_path(@meeting), class: 'btn btn-loud' do %>
+    <i class='icon icon-plus icon-sm pad0r'></i>New Talk for User
+  <% end %>
 <% end %>
 
 

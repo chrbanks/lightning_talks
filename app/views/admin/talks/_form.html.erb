@@ -1,0 +1,21 @@
+<%= form_for [:admin, @meeting, @talk] do |f| %>
+  <%= content_tag :small, @talk.errors.full_messages_for(:base).join(', '), class: 'error-message space-bottom' if @talk.errors.include?(:base) %>
+
+  <fieldset>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'stretch' %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'stretch' %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :user %>
+    <%= f.collection_select :user_id, User.all, :id, :full_name, prompt: true %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :meeting %>
+    <%= f.collection_select(:meeting_id, Meeting.all, :id, :title, selected: @meeting.id) %>
+  </fieldset>
+  <%= f.submit nil, class: 'btn btn-primary space-bottom' %>
+<% end %>
