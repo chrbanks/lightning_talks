@@ -12,28 +12,28 @@
 
 ActiveRecord::Schema.define(version: 20160826110610) do
 
-  create_table "meetings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "meetings", force: :cascade do |t|
     t.datetime "date",       null: false
     t.string   "title",      null: false
     t.integer  "user_id"
     t.string   "location",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_meetings_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 
-  create_table "talks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "talks", force: :cascade do |t|
     t.integer  "meeting_id"
-    t.string   "title",                     null: false
+    t.string   "title",       null: false
     t.integer  "user_id"
-    t.text     "description", limit: 65535, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.index ["meeting_id"], name: "index_talks_on_meeting_id", using: :btree
-    t.index ["user_id"], name: "index_talks_on_user_id", using: :btree
+    t.text     "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["meeting_id"], name: "index_talks_on_meeting_id"
+    t.index ["user_id"], name: "index_talks_on_user_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "username",                   null: false
     t.string   "first_name"
     t.string   "last_name"
@@ -41,10 +41,7 @@ ActiveRecord::Schema.define(version: 20160826110610) do
     t.boolean  "admin",      default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["username"], name: "index_users_on_username", using: :btree
+    t.index ["username"], name: "index_users_on_username"
   end
 
-  add_foreign_key "meetings", "users"
-  add_foreign_key "talks", "meetings"
-  add_foreign_key "talks", "users"
 end
