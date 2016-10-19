@@ -31,7 +31,6 @@ config/initializers/secret_token.rb
 
 # Ruby versions
 ###############
-.ruby-version
 .ruby-gemset
 .rvmrc
 

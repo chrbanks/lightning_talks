@@ -32,6 +32,7 @@ gem 'kabu-rails', git: 'git@cagit.careerbuilder.com:cbanks/kabu-rails.git'
 gem 'typhoeus', '0.6.9'
 gem 'active_service', git: 'git@cagit.careerbuilder.com:CorpAppsCB/activeservice.git'
 gem 'gravtastic'
+gem 'okcomputer'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -47,6 +48,10 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :staging, :production do
+	gem 'passenger', '5.0.30'
 end
 
 group :test do
