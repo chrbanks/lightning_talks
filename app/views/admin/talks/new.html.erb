@@ -1,5 +1,7 @@
 <%= currently_at 'New Talk' %>
 
-<h2 class='space-bottom1'>New Talk</h2>
-<%= render 'form', talk: @talk %>
-<%= link_to 'Back', meeting_path(@meeting) %>
+<div class='dark'>
+  <h2 class='space-bottom1'>New Talk</h2>
+  <%= render 'form', talk: @talk %>
+  <%= link_to 'Back', meeting_path(@meeting) %>
+</div>

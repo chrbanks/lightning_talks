@@ -1,37 +1,215 @@
 <%= currently_at 'Talk' %>
 
-<%= content_tag :p, class: 'space-bottom fill-green dark pad2' do %>
-  <%= notice %>
-<% end if notice %>
+<header class='inset-header talk dark center'>
+  <div class='container-fluid contain clearfix'>
+    <a href='#fakelink' class='btn btn-default next-talk pin-right hidden-xs lift'>
+      <i class='icon icon-arrow-right'></i>
+    </a>
+    <a href='#fakelink' class='btn btn-default next-talk pin-left hidden-xs lift'>
+      <i class='icon icon-arrow-left'></i>
+    </a>
+    <h1><%= @talk.title %></h1>
+    <p class='lead quiet'><%= @talk.description %></p>
+    <div>
+      <div class='pad1x inline'>
+        By
+        <a href='#fakelink'>
+          <%= image_tag 'batman.jpg', width: 24, class: 'img-rounded', style: 'margin: 0 5px' %><%= @talk.user.full_name %>
+        </a>
+        <span>
+          on <%= link_to @talk.meeting.title, @talk.meeting, class: 'quiet' %>
+        </span>
+      </div>
+      <div class='inline pad1x keyline-left'>
+        <a href='#fakelink' class='small category strong quiet'>
+          <span class='fill-purple img-circle pad0 small inline' style='margin-right: 10px;'></span>DESIGN
+        </a>
+      </div>
+    </div>
+    <ul class='actions pin-bottomright'>
+      <% if (DateTime.now < @meeting.date && (signed_in? && current_user.id == @talk.user_id)) || current_user.admin? %>
+        <li>
+          <%= link_to 'Destroy', meeting_talk_path(@meeting, @talk),
+              method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </li>
+      <% end %>
+      <% if current_user.admin? %>
+        <li>
+          <%= link_to 'Edit', edit_admin_meeting_talk_path(@meeting, @talk), class: 'btn btn-loud' %>
+        </li>
+      <% end %>
+      <% if signed_in? && current_user.id == @talk.user.id %>
+        <li>
+          <%= link_to 'Edit', edit_meeting_talk_path(@meeting, @talk), class: 'btn btn-primary' %>
+        </li>
+      <% end %>      
+      <li>
+        <a href='#comments' class='btn btn-default'><i class='icon icon-comment quiet pad0r' style='font-size: 14px;'></i>36
+        </a>
+      </li>
+      <li>
+        <a href='#fakelink' class='btn btn-default favorite'><i class='icon icon-heart quiet pad0r' style='font-size: 14px;'></i><span class='count'>12</span></a>
+      </li>
+      <li>
+        <a href='#fakelink' class='btn btn-success'><i class='icon icon-download-alt' style='font-size: 14px;'></i></a>
+      </li>
+    </ul>
+  </div>
+</header>
 
-<h2 class='space-bottom1'><%= @talk.title %></h2>
+<div class='container-fluid contain pad4y text-default'>
 
-<p>
-  <strong>Lightning talk session:</strong>
-  <%= @talk.meeting.title %>
-</p>
+  <article class='fill-white pad4 users round space-bottom4 clearfix col-sm-10 col-sm-offset-1'>
+    <div class='pad2'>
+      <section class='prose space-bottom4'>
+        <h4>Overview</h4>
+        <p>
+          Each handcrafted journal is made from <a href='#fakelink'>premium natural</a> raw leather. This buttery soft vegetable-tanned leather will <strong>darken</strong> over time and look even <em>better</em> as it ages. The more you use it, the better it looks. Each journal comes in a handy cotton pouch.
+        </p>
+        <p class='small quiet'>
+          *Please note: each piece of leather will have slight variations and markings, making each journal truly one of a kind.
+        </p>
+        <span class='fill-blue dark pad0 small round inline space-bottom0'>coding</span>
+        <span class='fill-blue dark pad0 small round inline space-bottom0'>magic</span>
+        <span class='fill-blue dark pad0 small round inline space-bottom0'>activerecord</span>
+        <span class='fill-blue dark pad0 small round inline space-bottom0'>devops</span>
+        <span class='fill-blue dark pad0 small round inline space-bottom0'>databases</span>
+      </section>
+      <section class='pad0y'>
+        <a id='comments'></a>
+        <h4>23 Comments</h4>
+        <div id='comment-1' class='media space-bottom'>
+          <a class='media-left pad1r' href='#fakelink'>
+            <%= image_tag 'hero.jpg', width: 48, class: 'img-rounded' %>
+          </a>
+          <div class='media-body'>
+            <h4 class='inline'>Mordecai</h4><a href='#comment-1' class='pad0x strong quiet small'>• 3 months ago</a>
+            <p>
+              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
+            </p>            
+          </div>
+        </div>
+        <div id='comment-2' class='media space-bottom'>
+          <a class='media-left pad1r' href='#fakelink'>
+            <%= image_tag 'adventuretime.jpg', width: 48, class: 'img-rounded' %>
+          </a>
+          <div class='media-body'>
+            <h4 class='inline'>Mordecai</h4><a href='#comment-2' class='pad0x strong quiet small'>• 3 months ago</a>
+            <p>
+              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
+            </p>
+          </div>
+        </div>
+        <div id='comment-3' class='media space-bottom'>
+          <a class='media-left pad1r' href='#fakelink'>
+            <%= image_tag 'batman.jpg', width: 48, class: 'img-rounded' %>
+          </a>
+          <div class='media-body'>
+            <h4 class='inline'>Mordecai</h4><a href='#comment-3' class='pad0x strong quiet small'>• 3 months ago</a>
+            <p>
+              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
+            </p>
+          </div>
+        </div>
+        <div id='comment-4' class='media space-bottom'>
+          <a class='media-left pad1r' href='#fakelink'>
+            <%= image_tag 'fusionfall.jpg', width: 48, class: 'img-rounded' %>
+          </a>
+          <div class='media-body'>
+            <h4 class='inline'>Mordecai</h4><a href='#comment-4' class='pad0x strong quiet small'>• 3 months ago</a>
+            <p>
+              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
+            </p>
+          </div>
+        </div>
+        <div id='comment-5' class='media space-bottom'>
+          <a class='media-left pad1r' href='#fakelink'>
+            <%= image_tag 'gumball.jpg', width: 48, class: 'img-rounded' %>
+          </a>
+          <div class='media-body'>
+            <h4 class='inline'>Mordecai</h4><a href='#comment-5' class='pad0x strong quiet small'>• 3 months ago</a>
+            <p>
+              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
+            </p>
+          </div>
+        </div>
+        <div id='comment-6' class='media space-bottom'>
+          <a class='media-left pad1r' href='#fakelink'>
+            <%= image_tag 'hero.jpg', width: 48, class: 'img-rounded' %>
+          </a>
+          <div class='media-body'>
+            <h4 class='inline'>Mordecai</h4><a href='#comment-6' class='pad0x strong quiet small'>• 3 months ago</a>
+            <p>
+              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
+            </p>
+          </div>
+        </div>
+        <div id='comment-7' class='media space-bottom'>
+          <a class='media-left pad1r' href='#fakelink'>
+            <%= image_tag 'pokemon.jpg', width: 48, class: 'img-rounded' %>
+          </a>
+          <div class='media-body'>
+            <h4 class='inline'>Mordecai</h4><a href='#comment-7' class='pad0x strong quiet small'>• 3 months ago</a>
+            <p>
+              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
+            </p>
+          </div>
+        </div>
+        <div id='comment-8' class='media space-bottom'>
+          <a class='media-left pad1r' href='#fakelink'>
+            <%= image_tag 'regularshow.jpg', width: 48, class: 'img-rounded' %>
+          </a>
+          <div class='media-body'>
+            <h4 class='inline'>Mordecai</h4><a href='#comment-8' class='pad0x strong quiet small'>• 3 months ago</a>
+            <p>
+              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
+            </p>
+          </div>
+        </div>
+        <div id='comment-9' class='media space-bottom'>
+          <a class='media-left pad1r' href='#fakelink'>
+            <%= image_tag 'robin.jpg', width: 48, class: 'img-rounded' %>
+          </a>
+          <div class='media-body'>
+            <h4 class='inline'>Mordecai</h4><a href='#comment-9' class='pad0x strong quiet small'>• 3 months ago</a>
+            <p>
+              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
+            </p>
+          </div>
+        </div>
+        <div id='comment-10' class='media space-bottom'>
+          <a class='media-left pad1r' href='#fakelink'>
+            <%= image_tag 'foster.jpg', width: 48, class: 'img-rounded' %>
+          </a>
+          <div class='media-body'>
+            <h4 class='inline'>Mordecai</h4><a href='#comment-10' class='pad0x strong quiet small'>• 3 months ago</a>
+            <p>
+              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
+            </p>
+          </div>
+        </div>
+        <div id='comment-11' class='media space-bottom'>
+          <a class='media-left pad1r' href='#fakelink'>
+            <%= image_tag 'hero.jpg', width: 48, class: 'img-rounded' %>
+          </a>
+          <div class='media-body'>
+            <h4 class='inline'>Mordecai</h4><a href='#comment-11' class='pad0x strong quiet small'>• 3 months ago</a>
+            <p>
+              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
+            </p>
+          </div>
+        </div>
+        <div class='media pad0y'>
+          <a class='media-left pad1r' href='#fakelink'>
+            <span class="inline round fill-red dark avatar center" style="color: #fff;font-family: 'Open Sans Bold';width: 48px;height: 48px;line-height: 48px;font-size: 14px;">ZW</span>
+          </a>
+          <div class='media-body with-input'>
+            <textarea class='stretch space-bottom' placeholder='Leave a comment, be nice...'></textarea>
+            <a href='#fakelink' class='btn btn-primary'>Post comment</a>
+          </div>
+        </div>        
+      </section>
+    </div>
+  </article>
 
-<p>
-  <strong>User:</strong>
-  <%= @talk.user.full_name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @talk.description %>
-</p>
-
-
-<p>
-  <% if current_user.admin? %>
-    <%= link_to 'Edit (Admin)', edit_admin_meeting_talk_path(@meeting, @talk), class: 'btn btn-loud' %>
-  <% end %>
-  <% if signed_in? && current_user.id == @talk.user.id %>
-    <%= link_to 'Edit', edit_meeting_talk_path(@meeting, @talk), class: 'btn btn-primary' %>
-  <% end %>
-  <% if (DateTime.now < @meeting.date && (signed_in? && current_user.id == @talk.user_id)) || current_user.admin? %>
-    <%= link_to 'Destroy', meeting_talk_path(@meeting, @talk),
-        method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-  <% end %>
-  <%= link_to 'View all', meeting_path(@meeting), class: 'btn btn-default' %>
-</p>
+</div>
