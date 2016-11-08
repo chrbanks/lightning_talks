@@ -28,11 +28,12 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'ruby-saml', '~> 1.3.0'
-gem 'kabu-rails', git: 'git@cagit.careerbuilder.com:cbanks/kabu-rails.git'
+gem 'kabu-rails', git: 'git@cagit.careerbuilder.com:CorpAppsCB/kabu-rails.git'
 gem 'typhoeus', '0.6.9'
 gem 'active_service', git: 'git@cagit.careerbuilder.com:CorpAppsCB/activeservice.git'
 gem 'gravtastic'
 gem 'okcomputer'
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,0 +1,12 @@
+<div class='col-md-4 col-sm-6 pad2'>
+  <%= link_to meeting, class: 'block fill-darken1 dark round pad3 contain quiet' do %>
+    <h3 class='pad0y space-bottom0'>
+      <%= meeting.title %>
+    </h3>
+    <p class='strong quiet space-bottom'>16 talks</p>
+    <% meeting.talks.each do |talk| %>
+      <%= monogram_for(talk.user, class: 'speaker space-bottom1') %>
+    <% end %>
+    <div class='speaker inline fill-lighten0 dark img-circle center small strong'>+6</div>
+  <% end %>
+</div>    

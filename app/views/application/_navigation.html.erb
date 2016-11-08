@@ -1,0 +1,6 @@
+<% content_for :navigation do %>
+  <%= nav_tab 'Talks', meetings_path, current: current %>
+  <%= nav_tab 'Members', '#fakelink', current: current %>
+  <%= link_to 'Search', '#fakelink', current: current, 
+              class: 'tab-link keyline-bottom hidden-xs quiet pad1y inline' %>
+<% end %>

@@ -1,0 +1,29 @@
+<header class='navbar dark animate pad2x contain clearfix pad2y' role='banner'>
+  <%= link_to root_path, class: 'pull-left' do %>
+    <%= image_tag 'mountain.svg', height: 38 %>
+  <% end %>
+  <nav role='navigation' class='pull-left pad2x'>
+    <div class='small strong'>
+      <%= yield :navigation %>
+    </div>
+  </nav>
+  <div class='pull-right user-nav'>
+    <ul id='authmenu' class='dropdown-menu' role='menu' aria-labelledby='dLabel'>
+      <li><a href='#fakelink'>Your profile</a></li>
+      <li><a href='#fakelink'>Settings</a></li>
+      <li class='divider'></li>
+      <li><a href='#fakelink'>Send feedback</a></li>
+      <li><a href='#fakelink'>Sign out</a></li>
+    </ul>
+    <a href='#fakelink' class='quiet pad1y inline small strong'>
+      <i class='icon icon-bullhorn pad0r'></i>Sign up to talk
+    </a>
+    <a href='#fakelink' class='btn btn-default'>
+      <i class='icon icon-bell quiet'></i>
+    </a>
+    <a href='#fakelink' class='inline' data-toggle='dropdown'>
+      <div class='inline round fill-red dark avatar center'>ZW</div>
+      <span class='caret quiet'></span>
+    </a>
+  </div>
+</header>
