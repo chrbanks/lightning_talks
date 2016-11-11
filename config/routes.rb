@@ -15,6 +15,13 @@ Rails.application.routes.draw do
     resource :comments, only: [:create]
   end
 
+  resources :users, only: [:index, :show] do
+    member do
+      get 'following'
+      get 'followers'
+    end
+  end
+
   get  'signin' => 'sessions#new'
   post 'saml/consume' => 'sessions#create'
   post 'sessions/create' => 'sessions#create'
