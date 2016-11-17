@@ -1,15 +1,5 @@
-<%= form_for [@meeting, @talk] do |f| %>
-  <% if @talk.errors.any? %>
-    <div class='alert errors fill-light space-bottom'>
-      <h4>There was a problem with your submission.</h4>
-      <p>
-        Errors have been <span class='danger'>highlighted</span> below.
-      </p>
-    </div>
-  <% end %>
-
-  <%= content_tag :small, @talk.errors.full_messages_for(:base).join(', '), class: 'error-message space-bottom' if @talk.errors.include?(:base) %>
-
+<%= form_for([@meeting, @talk], html: { class: 'pad4x dark' }) do |f| %>
+  <%= content_tag :small, @meeting.errors.full_messages_for(:base).join(', '), class: 'error-message space-bottom' if @talk.errors.include?(:base) %>
   <fieldset>
     <%= f.label :title %>
     <%= f.text_field :title, class: 'stretch' %>
@@ -22,5 +12,8 @@
     <%= f.label :meeting %>
     <%= f.collection_select(:meeting_id, Meeting.where("date > ?", Date.today), :id, :title, selected: @meeting.id) %>
   </fieldset>
-  <%= f.submit nil, class: 'btn btn-primary space-bottom' %>
+  <div class='pad1y space-bottom4'>
+    <%= f.submit nil, class: 'btn btn-primary btn-wide' %>
+    <%= link_to 'Cancel', meeting_talk_path(@meeting, @talk), class: 'btn btn-default' %>
+  </div>
 <% end %>

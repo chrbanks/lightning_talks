@@ -1,8 +1,14 @@
 <%= currently_at 'Edit Session' %>
 
-<div class='dark'>
-  <h2 class='space-bottom1'>Edit Lightning Talk Session</h2>
-  <%= render 'form', meeting: @meeting %>
-  <%= link_to 'Show', @meeting %> |
-  <%= link_to 'View all', root_path %>
+<header class='dark pad4y center'>
+  <div class='container-fluid contain clearfix'>
+    <h1>Edit Session</h1>
+    <p class='lead quiet'>Bacon ipsum dolor amet hamburger capicola</p>
+  </div>
+</header>
+
+<div class='container-fluid contain'>
+  <div class='col-sm-8 col-sm-offset-2'>
+    <%= render 'form' %>
+  </div>
 </div>
