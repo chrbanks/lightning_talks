@@ -2,13 +2,11 @@ class User < ApplicationRecord
   include Gravtastic
   gravtastic
 
-  before_create :set_admin, unless: :skip_callbacks
-  before_create :get_info, unless: :skip_callbacks
+  before_create :set_admin
+  before_create :get_info
   has_many :meetings
 
   validates :username, presence: true
-
-  attr_accessor :skip_callbacks
 
   def full_name
     "#{first_name} #{last_name}"
