@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   include Gravtastic
-  gravtastic
+  gravtastic default: 'identicon'
 
   before_create :set_admin
   before_create :get_info

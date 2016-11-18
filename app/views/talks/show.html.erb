@@ -14,7 +14,7 @@
       <div class='pad1x inline'>
         By
         <a href='#fakelink'>
-          <%= image_tag 'batman.jpg', width: 24, class: 'img-rounded', style: 'margin: 0 5px' %><%= @talk.user.full_name %>
+          <%= avatar_for @talk.user, width: 24, class: 'img-rounded', style: 'margin: 0 5px' %><%= @talk.user.full_name %>
         </a>
         <span>
           on <%= link_to @talk.meeting.title, @talk.meeting, class: 'quiet' %>

@@ -68,7 +68,7 @@ textarea, input[type=password], input[type=text], input[type=email], input[type=
     width: 38px;
     height: 38px;
     padding: 0;
-    line-height: 38px;
+    line-height: 39px;
   }
 
   .avatar { 
@@ -78,6 +78,7 @@ textarea, input[type=password], input[type=text], input[type=email], input[type=
     height: 38px;
     line-height: 38px;
     font-size: 14px;  
+    vertical-align: middle;
   }
 }
 

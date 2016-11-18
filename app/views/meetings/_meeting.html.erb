@@ -5,7 +5,7 @@
     </h3>
     <p class='strong quiet space-bottom'>16 talks</p>
     <% meeting.talks.each do |talk| %>
-      <%= monogram_for(talk.user, class: 'speaker space-bottom1') %>
+      <%= avatar_for talk.user, class: 'speaker space-bottom1 inline img-circle' %>
     <% end %>
     <div class='speaker inline fill-lighten0 dark img-circle center small strong'>+6</div>
   <% end %>

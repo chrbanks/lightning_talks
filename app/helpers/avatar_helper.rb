@@ -1,11 +1,6 @@
 module AvatarHelper
 
-  def monogram_for(name, options = {})
-    presenter = Monogram.new(name, self, options)
-    if block_given?
-      yield presenter
-    else
-      presenter
-    end
+  def avatar_for(user, options = {})
+    image_tag user.gravatar_url, options.merge(alt: user.full_name)
   end
 end
