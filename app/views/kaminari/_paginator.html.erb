@@ -1,0 +1,19 @@
+<%# The container tag
+  - available local variables
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+    paginator:     the paginator that renders the pagination tags inside
+-%>
+<%= paginator.render do -%>
+  <nav class='pagination pad4y space-bottom4 center dark contain clearfix'>
+    <%= prev_page_tag unless current_page.first? %>
+    <%= next_page_tag unless current_page.last? %>
+    <% if total_pages > 1 %>
+      <strong class='pad1y block'>
+        Page <%= current_page %> of <%= total_pages %>
+      </strong>
+    <% end -%>
+  </nav>
+<% end -%>

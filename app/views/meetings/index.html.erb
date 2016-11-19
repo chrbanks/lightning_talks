@@ -24,10 +24,5 @@
   <div class='contain clearfix' style='margin: -20px;'>
     <%= render @meetings %>
   </div>
-
-  <section class='pad4y space-bottom4 center clearfix dark'>
-    <a href='#fakelink' class='btn btn-default pull-left'>Previous</a>
-    <a href='#fakelink' class='btn btn-default pull-right'>Next</a>
-    <strong class='pad1y block'>Page 1 of 320</strong>
-  </section>
+  <%= paginate @meetings %>
 </div>
