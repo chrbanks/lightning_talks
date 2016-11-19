@@ -3,5 +3,6 @@ FactoryGirl.define do
     date DateTime.now
     title "MyString"
     location "MyString"
+    user
   end
 end

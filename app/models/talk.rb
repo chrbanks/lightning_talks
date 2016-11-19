@@ -6,5 +6,15 @@ class Talk < ApplicationRecord
   
   validates :title, presence: true
   validates :description, presence: true
-  validates :category, inclusion: { in: CATEGORIES, allow_nil: true }
+  validates :category, inclusion: { in: CATEGORIES }
+  validates :meeting, presence: true
+  validates :user, presence: true
+
+  def next
+    meeting.talks.where("id > ?", id).first
+  end
+
+  def previous
+    meeting.talks.where("id < ?", id).last
+  end
 end
