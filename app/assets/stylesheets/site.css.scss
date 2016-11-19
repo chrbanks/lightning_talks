@@ -1,6 +1,7 @@
 /* Global styles
 ------------------------------------------------------- */
 
+.category { text-transform: uppercase; }
 .meeting { min-height: 219px; }
 
 .fill-teal { background-color: #41afa5; }
@@ -140,7 +141,7 @@ textarea, input[type=password], input[type=text], input[type=email], input[type=
   line-height: 24px;
   vertical-align: middle;
   text-transform: uppercase;
-}
+  }
 
 .permalink {
   z-index: 1;

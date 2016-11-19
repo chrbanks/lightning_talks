@@ -1,9 +1,7 @@
 <div class='col-md-4 col-sm-6 pad2'>
   <div class='block fill-darken1 dark round pad3 contain row9'>
     <%#= image_tag 'ribbon.svg', class: 'ribbon pin-topright' %>
-    <a href='#fakelink' class='small strong quiet category'>
-      <span class='fill-green img-circle pad0 inline'></span>MOBILE
-    </a>
+    <%= category_link_for(talk) %>
     <h3 class='pad0y space-bottom0'>
       <%= link_to talk.title, meeting_talk_path(@meeting, talk), class: 'text-default block' %>
     </h3>
