@@ -7,6 +7,7 @@
     remote:        data-remote
 -%>
 <span class='next pin-right pad4y'>
-  <%= link_to_unless current_page.last?, t('views.pagination.next').html_safe, 
-                     url, class: 'btn btn-default', rel: 'next', remote: remote %>
+  <%= link_to t('views.pagination.next').html_safe, 
+              url, class: 'btn btn-default', rel: 'next', remote: remote,
+              disabled: current_page.last? %>
 </span>

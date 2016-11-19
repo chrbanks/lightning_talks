@@ -8,12 +8,10 @@
 -%>
 <%= paginator.render do -%>
   <nav class='pagination pad4y space-bottom4 center dark contain clearfix'>
-    <%= prev_page_tag unless current_page.first? %>
-    <%= next_page_tag unless current_page.last? %>
-    <% if total_pages > 1 %>
-      <strong class='pad1y block'>
-        Page <%= current_page %> of <%= total_pages %>
-      </strong>
-    <% end -%>
+    <%= prev_page_tag %>
+    <%= next_page_tag %>
+    <strong class='pad1y block'>
+      Page <%= current_page %> of <%= total_pages %>
+    </strong>
   </nav>
-<% end -%>
+<% end if total_pages > 1 -%>
