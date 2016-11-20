@@ -11,6 +11,7 @@ describe Talk do
     it { is_expected.to respond_to :user_id }
     it { is_expected.to respond_to :meeting_id }
     it { is_expected.to respond_to :category }
+    it { is_expected.to respond_to :comments_count }
   end
 
   describe 'validations' do    

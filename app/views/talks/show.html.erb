@@ -40,7 +40,7 @@
       <% end %>      
       <li>
         <a href='#comments' class='btn btn-default'>
-          <i class='icon icon-comment quiet pad0r' style='font-size: 14px;'></i><%= @comments.length %>
+          <i class='icon icon-comment quiet pad0r' style='font-size: 14px;'></i><%= @comments.size %>
         </a>
       </li>
       <li>
@@ -77,7 +77,7 @@
       </section>
       <section class='pad0y'>
         <a id='comments'></a>
-        <h4><%= pluralize @comments.length, 'comment' %></h4>
+        <h4><%= pluralize @comments.size, 'comment' %></h4>
         <%= render @comments %>
         <%= form_for [@talk, @comment] do |f| %>
           <div class='media pad0y'>

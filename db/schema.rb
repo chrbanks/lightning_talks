@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120111509) do
+ActiveRecord::Schema.define(version: 20161120182830) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "title",            limit: 50, default: ""
@@ -38,12 +38,13 @@ ActiveRecord::Schema.define(version: 20161120111509) do
 
   create_table "talks", force: :cascade do |t|
     t.integer  "meeting_id"
-    t.string   "title",       null: false
+    t.string   "title",          null: false
     t.integer  "user_id"
-    t.text     "description", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "description",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "category"
+    t.integer  "comments_count"
     t.index ["meeting_id"], name: "index_talks_on_meeting_id"
     t.index ["user_id"], name: "index_talks_on_user_id"
   end
