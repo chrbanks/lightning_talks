@@ -10,6 +10,11 @@ RSpec.describe User, type: :model do
     it { is_expected.to respond_to :last_name }
     it { is_expected.to respond_to :email }
     it { is_expected.to respond_to :admin }
+    it { is_expected.to respond_to :meetings }
+    it { is_expected.to respond_to :talks }
+    it { is_expected.to respond_to :favorites }
+    it { is_expected.to respond_to :favorites_count }
+    it { is_expected.to respond_to :favorite_talks }
   end
 
   describe 'Validations' do

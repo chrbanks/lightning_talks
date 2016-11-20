@@ -1,6 +1,7 @@
 class Talk < ApplicationRecord
   belongs_to :meeting
   belongs_to :user
+  has_many :favorites
 
   acts_as_commentable
 

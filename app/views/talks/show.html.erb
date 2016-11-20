@@ -4,8 +4,12 @@
   <div class='container-fluid contain clearfix pad4x'>
     <%= next_talk @talk %>
     <%= previous_talk @talk %>
-    <h1><%= @talk.title %></h1>
-    <p class='lead quiet'><%= @talk.description %></p>
+    <h1>
+      <%= @talk.title %>
+    </h1>
+    <p class='lead quiet'>
+      <%= @talk.description %>
+    </p>
     <div>
       <div class='pad1x inline'>
         By
@@ -25,7 +29,9 @@
       <% if (DateTime.now < @talk.meeting.date && (signed_in? && current_user.id == @talk.user_id)) || current_user.admin? %>
         <li>
           <%= link_to 'Destroy', @talk,
-              method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+                                 method: :delete, 
+                                 data: { confirm: 'Are you sure?' }, 
+                                 class: 'btn btn-danger' %>
         </li>
       <% end %>
       <% if current_user.admin? %>
@@ -45,7 +51,7 @@
       </li>
       <li>
         <a href='#fakelink' class='btn btn-default favorite'>
-          <i class='icon icon-heart quiet pad0r'></i><span class='count'>12</span>
+          <i class='icon icon-heart quiet pad0r'></i><span class='count'><%= @talk.favorites.size %></span>
         </a>
       </li>
       <li>
