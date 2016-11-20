@@ -2,6 +2,8 @@ class Talk < ApplicationRecord
   belongs_to :meeting
   belongs_to :user
 
+  acts_as_commentable
+
   CATEGORIES = %w(mobile developer_tools design front_end database learning news)
   
   validates :title, presence: true

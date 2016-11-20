@@ -17,6 +17,7 @@ gem 'gravtastic'
 gem 'okcomputer'
 gem 'faker'
 gem 'kaminari'
+gem 'acts_as_commentable'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

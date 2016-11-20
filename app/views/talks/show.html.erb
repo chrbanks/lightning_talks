@@ -22,31 +22,36 @@
       </div>
     </div>
     <ul class='actions pin-bottomright'>
-      <% if (DateTime.now < @meeting.date && (signed_in? && current_user.id == @talk.user_id)) || current_user.admin? %>
+      <% if (DateTime.now < @talk.meeting.date && (signed_in? && current_user.id == @talk.user_id)) || current_user.admin? %>
         <li>
-          <%= link_to 'Destroy', meeting_talk_path(@meeting, @talk),
+          <%= link_to 'Destroy', @talk,
               method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
         </li>
       <% end %>
       <% if current_user.admin? %>
         <li>
-          <%= link_to 'Edit', edit_admin_meeting_talk_path(@meeting, @talk), class: 'btn btn-loud' %>
+          <%= link_to 'Edit', edit_talk_path(@talk), class: 'btn btn-loud' %>
         </li>
       <% end %>
       <% if signed_in? && current_user.id == @talk.user.id %>
         <li>
-          <%= link_to 'Edit', edit_meeting_talk_path(@meeting, @talk), class: 'btn btn-primary' %>
+          <%= link_to 'Edit', edit_talk_path(@talk), class: 'btn btn-primary' %>
         </li>
       <% end %>      
       <li>
-        <a href='#comments' class='btn btn-default'><i class='icon icon-comment quiet pad0r' style='font-size: 14px;'></i>36
+        <a href='#comments' class='btn btn-default'>
+          <i class='icon icon-comment quiet pad0r' style='font-size: 14px;'></i><%= @comments.length %>
         </a>
       </li>
       <li>
-        <a href='#fakelink' class='btn btn-default favorite'><i class='icon icon-heart quiet pad0r' style='font-size: 14px;'></i><span class='count'>12</span></a>
+        <a href='#fakelink' class='btn btn-default favorite'>
+          <i class='icon icon-heart quiet pad0r' style='font-size: 14px;'></i><span class='count'>12</span>
+        </a>
       </li>
       <li>
-        <a href='#fakelink' class='btn btn-success'><i class='icon icon-download-alt' style='font-size: 14px;'></i></a>
+        <a href='#fakelink' class='btn btn-success'>
+          <i class='icon icon-download-alt' style='font-size: 14px;'></i>
+        </a>
       </li>
     </ul>
   </div>
@@ -54,7 +59,7 @@
 
 <div class='container-fluid contain pad4y text-default'>
 
-  <article class='fill-white pad4 users round space-bottom4 clearfix col-sm-10 col-sm-offset-1'>
+  <article class='fill-white pad4 round space-bottom4 clearfix col-sm-10 col-sm-offset-1'>
     <div class='pad2'>
       <section class='prose space-bottom4'>
         <h4>Overview</h4>
@@ -72,137 +77,22 @@
       </section>
       <section class='pad0y'>
         <a id='comments'></a>
-        <h4>23 Comments</h4>
-        <div id='comment-1' class='media space-bottom'>
-          <a class='media-left pad1r' href='#fakelink'>
-            <%= image_tag 'hero.jpg', width: 48, class: 'img-rounded' %>
-          </a>
-          <div class='media-body'>
-            <h4 class='inline'>Mordecai</h4><a href='#comment-1' class='pad0x strong quiet small'>• 3 months ago</a>
-            <p>
-              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
-            </p>            
+        <h4><%= pluralize @comments.length, 'comment' %></h4>
+        <%= render @comments %>
+        <%= form_for [@talk, @comment] do |f| %>
+          <div class='media pad0y'>
+            <a class='media-left pad1r' href='#fakelink'>
+              <%= avatar_for current_user, width: 48, class: 'img-rounded' %>
+            </a>
+            <div class='media-body with-input'>
+              <%= f.text_area :comment, 
+                              class: 'stretch space-bottom1', 
+                              placeholder: 'Leave a comment, be nice...', 
+                              required: true %>
+              <%= f.submit 'Post comment', class: 'btn btn-primary' %>
+            </div>
           </div>
-        </div>
-        <div id='comment-2' class='media space-bottom'>
-          <a class='media-left pad1r' href='#fakelink'>
-            <%= image_tag 'adventuretime.jpg', width: 48, class: 'img-rounded' %>
-          </a>
-          <div class='media-body'>
-            <h4 class='inline'>Mordecai</h4><a href='#comment-2' class='pad0x strong quiet small'>• 3 months ago</a>
-            <p>
-              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
-            </p>
-          </div>
-        </div>
-        <div id='comment-3' class='media space-bottom'>
-          <a class='media-left pad1r' href='#fakelink'>
-            <%= image_tag 'batman.jpg', width: 48, class: 'img-rounded' %>
-          </a>
-          <div class='media-body'>
-            <h4 class='inline'>Mordecai</h4><a href='#comment-3' class='pad0x strong quiet small'>• 3 months ago</a>
-            <p>
-              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
-            </p>
-          </div>
-        </div>
-        <div id='comment-4' class='media space-bottom'>
-          <a class='media-left pad1r' href='#fakelink'>
-            <%= image_tag 'fusionfall.jpg', width: 48, class: 'img-rounded' %>
-          </a>
-          <div class='media-body'>
-            <h4 class='inline'>Mordecai</h4><a href='#comment-4' class='pad0x strong quiet small'>• 3 months ago</a>
-            <p>
-              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
-            </p>
-          </div>
-        </div>
-        <div id='comment-5' class='media space-bottom'>
-          <a class='media-left pad1r' href='#fakelink'>
-            <%= image_tag 'gumball.jpg', width: 48, class: 'img-rounded' %>
-          </a>
-          <div class='media-body'>
-            <h4 class='inline'>Mordecai</h4><a href='#comment-5' class='pad0x strong quiet small'>• 3 months ago</a>
-            <p>
-              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
-            </p>
-          </div>
-        </div>
-        <div id='comment-6' class='media space-bottom'>
-          <a class='media-left pad1r' href='#fakelink'>
-            <%= image_tag 'hero.jpg', width: 48, class: 'img-rounded' %>
-          </a>
-          <div class='media-body'>
-            <h4 class='inline'>Mordecai</h4><a href='#comment-6' class='pad0x strong quiet small'>• 3 months ago</a>
-            <p>
-              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
-            </p>
-          </div>
-        </div>
-        <div id='comment-7' class='media space-bottom'>
-          <a class='media-left pad1r' href='#fakelink'>
-            <%= image_tag 'pokemon.jpg', width: 48, class: 'img-rounded' %>
-          </a>
-          <div class='media-body'>
-            <h4 class='inline'>Mordecai</h4><a href='#comment-7' class='pad0x strong quiet small'>• 3 months ago</a>
-            <p>
-              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
-            </p>
-          </div>
-        </div>
-        <div id='comment-8' class='media space-bottom'>
-          <a class='media-left pad1r' href='#fakelink'>
-            <%= image_tag 'regularshow.jpg', width: 48, class: 'img-rounded' %>
-          </a>
-          <div class='media-body'>
-            <h4 class='inline'>Mordecai</h4><a href='#comment-8' class='pad0x strong quiet small'>• 3 months ago</a>
-            <p>
-              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
-            </p>
-          </div>
-        </div>
-        <div id='comment-9' class='media space-bottom'>
-          <a class='media-left pad1r' href='#fakelink'>
-            <%= image_tag 'robin.jpg', width: 48, class: 'img-rounded' %>
-          </a>
-          <div class='media-body'>
-            <h4 class='inline'>Mordecai</h4><a href='#comment-9' class='pad0x strong quiet small'>• 3 months ago</a>
-            <p>
-              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
-            </p>
-          </div>
-        </div>
-        <div id='comment-10' class='media space-bottom'>
-          <a class='media-left pad1r' href='#fakelink'>
-            <%= image_tag 'foster.jpg', width: 48, class: 'img-rounded' %>
-          </a>
-          <div class='media-body'>
-            <h4 class='inline'>Mordecai</h4><a href='#comment-10' class='pad0x strong quiet small'>• 3 months ago</a>
-            <p>
-              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
-            </p>
-          </div>
-        </div>
-        <div id='comment-11' class='media space-bottom'>
-          <a class='media-left pad1r' href='#fakelink'>
-            <%= image_tag 'hero.jpg', width: 48, class: 'img-rounded' %>
-          </a>
-          <div class='media-body'>
-            <h4 class='inline'>Mordecai</h4><a href='#comment-11' class='pad0x strong quiet small'>• 3 months ago</a>
-            <p>
-              Dude, you've gotta stop pulling stuff out of the trash. It's unnatural!
-            </p>
-          </div>
-        </div>
-        <div class='media pad0y'>
-          <a class='media-left pad1r' href='#fakelink'>
-            <span class="inline round fill-red dark avatar center" style="color: #fff;font-family: 'Open Sans Bold';width: 48px;height: 48px;line-height: 48px;font-size: 14px;">ZW</span>
-          </a>
-          <div class='media-body with-input'>
-            <textarea class='stretch space-bottom' placeholder='Leave a comment, be nice...'></textarea>
-            <a href='#fakelink' class='btn btn-primary'>Post comment</a>
-          </div>
-        </div>
+        <% end %>
       </section>
     </div>
   </article>

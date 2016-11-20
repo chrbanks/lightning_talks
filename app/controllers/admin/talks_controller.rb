@@ -10,8 +10,7 @@ class Admin::TalksController < Admin::ApplicationController
     @talk = Talk.new(talk_params.merge!({ meeting_id: talk_params[:meeting_id],
                                           user_id: talk_params[:user_id] }))
     if @talk.save
-      redirect_to meeting_talk_path(params[:meeting_id], @talk),
-        notice: 'Talk was successfully created.'
+      redirect_to @talk, notice: 'Talk was successfully created.'
     else
       render :new
     end
@@ -22,8 +21,7 @@ class Admin::TalksController < Admin::ApplicationController
 
   def update
     if @talk.update(talk_params)
-      redirect_to meeting_talk_path(@talk.meeting_id, @talk),
-        notice: 'Talk was successfully updated'
+      redirect_to @talk, notice: 'Talk was successfully updated'
     else
       render :edit
     end

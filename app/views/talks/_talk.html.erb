@@ -3,7 +3,7 @@
     <%#= image_tag 'ribbon.svg', class: 'ribbon pin-topright' %>
     <%= category_link_for(talk) %>
     <h3 class='pad0y space-bottom0'>
-      <%= link_to talk.title, meeting_talk_path(@meeting, talk), class: 'text-default block' %>
+      <%= link_to talk.title, talk, class: 'text-default block' %>
     </h3>
     <%= render partial: 'shared/author', locals: { talk: talk } %>
     <div class='strong small pin-bottomright pad1y pad3x'>

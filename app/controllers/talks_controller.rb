@@ -1,20 +1,20 @@
 class TalksController < ApplicationController
   before_action :set_talk, only: [:show, :edit, :update, :destroy]
-  before_action :set_meeting, only: [:show, :new, :edit]
+  before_action :set_meeting, only: [:new, :create]
 
   def show
+    @comments = @talk.comments.includes(:user).to_a
+    @comment = @talk.comments.new
   end
 
   def new
-    @talk = Talk.new
+    @talk = @meeting.talks.new
   end
 
   def create
-    @talk = Talk.new(talk_params.merge!({ meeting_id: talk_params[:meeting_id],
-                                          user_id: current_user.id }))
+    @talk = @meeting.talks.new(talk_params)
     if @talk.save
-      redirect_to meeting_talk_path(params[:meeting_id], @talk),
-        notice: 'Talk was successfully created.'
+      redirect_to @talk, notice: 'Talk was successfully created.'
     else
       render :new
     end
@@ -25,8 +25,7 @@ class TalksController < ApplicationController
 
   def update
     if @talk.update(talk_params)
-      redirect_to meeting_talk_path(@talk.meeting_id, @talk),
-        notice: 'Talk was successfully updated'
+      redirect_to @talk, notice: 'Talk was successfully updated'
     else
       render :edit
     end
@@ -34,21 +33,22 @@ class TalksController < ApplicationController
 
   def destroy
     @talk.destroy
-    redirect_to meeting_path(params[:meeting_id]),
-      notice: 'Talk was successfully deleted.'
+    redirect_to @talk.meeting, notice: 'Talk was successfully deleted.'
   end
 
   private
-
-  def set_talk
-    @talk = Talk.find(params[:id])
-  end
 
   def set_meeting
     @meeting = Meeting.find(params[:meeting_id])
   end
 
+  def set_talk
+    @talk = Talk.find(params[:id])
+  end
+
   def talk_params
-    params.require(:talk).permit(:meeting_id, :title, :user_id, :description)
+    params.require(:talk)
+          .permit(:meeting_id, :title, :user_id, :description, :category)
+          .merge(user_id: current_user.id)
   end
 end
