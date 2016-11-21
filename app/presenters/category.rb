@@ -1,13 +1,13 @@
-class CategoryLink
-  attr_reader :category
+class Category
+  attr_reader :name
 
-  def initialize(category, template)
-    @category = category
+  def initialize(name, template)
+    @name = name
     @template = template
   end
 
   def color
-    case @category
+    case @name
     when 'mobile'
       'fill-green'
     when 'developer_tools'
@@ -26,6 +26,6 @@ class CategoryLink
   end
 
   def to_s
-    @template.render partial: 'shared/category_link', object: self
+    @template.render partial: 'shared/category', object: self
   end
 end
