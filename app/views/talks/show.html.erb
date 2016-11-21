@@ -50,9 +50,11 @@
         </a>
       </li>
       <li>
-        <a href='#fakelink' class='btn btn-default favorite'>
-          <i class='icon icon-heart quiet pad0r'></i><span class='count'><%= @talk.favorites.size %></span>
-        </a>
+        <% if current_user.favorite?(@talk) %>
+          <%= render 'unfavorite' %>
+        <% else %>
+          <%= render 'favorite' %>
+        <% end %>
       </li>
       <li>
         <a href='#fakelink' class='btn btn-success'>

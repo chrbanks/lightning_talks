@@ -3,6 +3,7 @@
 
 .category { text-transform: uppercase; }
 .meeting { min-height: 219px; }
+.btn.favorite { vertical-align: middle; }
 
 .fill-teal { background-color: #41afa5; }
 
@@ -151,7 +152,10 @@ textarea, input[type=password], input[type=text], input[type=email], input[type=
   padding-right: 100px;
 }
 
-.dark .btn-default { background: #484848; }
+.dark .btn-default,
+.dark .btn-default[type=submit], 
+.dark .btn-default[type=button] { background: #484848; }
+
 .dark .btn[disabled] { 
   background: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.25);

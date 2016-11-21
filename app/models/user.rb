@@ -35,6 +35,18 @@ class User < ApplicationRecord
     followed_users.include? user
   end
 
+  def favorite?(talk)
+    favorites.exists?(talk: talk)
+  end
+
+  def favorite!(talk)
+    favorites.create!(talk: talk)
+  end
+
+  def unfavorite!(talk)
+    favorites.find_by(talk: talk).destroy
+  end
+
   private
 
   def set_admin

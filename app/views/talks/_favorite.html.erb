@@ -1,0 +1,7 @@
+<%= form_for current_user.favorites.new(talk: @talk), 
+             html: { class: 'inline' } do |f| %>
+  <%= f.hidden_field :talk_id %>
+  <%= f.button :submit, class: 'btn btn-default favorite' do %>
+    <i class='icon icon-heart quiet pad0r'></i><span class='count'><%= @talk.favorites.size %></span>
+  <% end %>
+<% end %>
