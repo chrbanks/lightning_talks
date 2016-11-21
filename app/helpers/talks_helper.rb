@@ -20,4 +20,9 @@ module TalksHelper
       content_tag :i, nil, class: 'icon icon-arrow-left'
     end if talk.previous
   end
+
+  def favorite_icon(talk)
+    color = current_user.favorite?(talk) ? 'danger' : 'quiet'
+    content_tag :i, nil, class: "icon icon-heart icon-md #{color}"
+  end  
 end

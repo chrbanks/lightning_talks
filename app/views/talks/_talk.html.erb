@@ -6,8 +6,6 @@
       <%= link_to talk.title, talk, class: 'text-default block' %>
     </h3>
     <%= render partial: 'shared/author', locals: { talk: talk } %>
-    <div class='strong small pin-bottomright pad1y pad3x'>
-      <i class='icon icon-heart icon-md quiet'></i> <%= talk.favorites.size %><i class='icon icon-comment icon-md quiet' style='margin-left:8px;'></i> <%= talk.comments.size %>
-    </div>
+    <%= render partial: 'talks/stats', locals: { talk: talk } %>
   </div>
 </div>
