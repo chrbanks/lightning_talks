@@ -50,11 +50,7 @@
         </a>
       </li>
       <li>
-        <% if current_user.favorite?(@talk) %>
-          <%= render 'unfavorite' %>
-        <% else %>
-          <%= render 'favorite' %>
-        <% end %>
+        <%= render 'favorite_form' %>
       </li>
       <li>
         <a href='#fakelink' class='btn btn-success'>
