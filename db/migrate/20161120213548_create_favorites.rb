@@ -9,6 +9,5 @@ class CreateFavorites < ActiveRecord::Migration[5.0]
 
     add_index :favorites, :user_id
     add_index :favorites, :talk_id
-    add_index :favorites, [:user_id, :talk_id], unique: true
   end
 end
