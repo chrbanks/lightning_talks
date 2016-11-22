@@ -35,21 +35,21 @@ RSpec.describe User, type: :model do
       end
     end
 
-    describe '#follow' do
+    describe '#follow!' do
 
       it 'follows the other user and returns true' do
         expect(chris.following? martin).to be_falsey
-        expect(chris.follow martin).to be_truthy
+        expect(chris.follow! martin).to be_truthy
         expect(chris.following? martin).to be_truthy
       end
     end
 
     describe '#unfollow' do
-      before { chris.follow martin }
+      before { chris.follow! martin }
 
       it 'unfollows the other user and returns true' do
         expect(chris.following? martin).to be_truthy
-        expect(chris.unfollow martin).to be_truthy
+        expect(chris.unfollow! martin).to be_truthy
         expect(chris.following? martin).to be_falsey
       end
     end
@@ -59,7 +59,7 @@ RSpec.describe User, type: :model do
         expect(chris.following? martin).to be_falsey
         expect(martin.following? chris).to be_falsey
 
-        chris.follow martin
+        chris.follow! martin
 
         expect(chris.following? martin).to be_truthy
         expect(martin.following? chris).to be_falsey

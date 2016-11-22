@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :admin do
     root 'application#index'
     resources :users
@@ -15,10 +16,11 @@ Rails.application.routes.draw do
     resource :comments, only: [:create]
   end
 
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:index, :show]
+
+  resources :relationships do
     member do
-      get 'following'
-      get 'followers'
+      get 'following', 'followers'
     end
   end
 

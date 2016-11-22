@@ -20,11 +20,11 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def follow(user)
-    active_relationships.create(followed: user)
+  def follow!(user)
+    active_relationships.create!(followed: user)
   end
 
-  def unfollow(user)
+  def unfollow!(user)
     active_relationships.find_by(followed: user).destroy
   end
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Admin::ApplicationController, :vcr, type: :controller do
+RSpec.describe Admin::ApplicationController, type: :controller do
   describe "GET #index" do
     context 'as admin' do
       let(:user) { create(:user, :admin) }

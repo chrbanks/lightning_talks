@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Meeting, :vcr, type: :model do
+RSpec.describe Meeting, type: :model do
   describe 'Attributes' do
     it { is_expected.to respond_to :id }
     it { is_expected.to respond_to :date }
