@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :admin do
     root 'application#index'
     resources :users
@@ -13,6 +14,14 @@ Rails.application.routes.draw do
   
   resources :talks, only: [:show, :edit, :update, :destroy] do
     resource :comments, only: [:create]
+  end
+
+  resources :users, only: [:index, :show]
+
+  resources :relationships do
+    member do
+      get 'following', 'followers'
+    end
   end
 
   get  'signin' => 'sessions#new'
