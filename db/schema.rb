@@ -38,13 +38,13 @@ ActiveRecord::Schema.define(version: 20161120182830) do
 
   create_table "talks", force: :cascade do |t|
     t.integer  "meeting_id"
-    t.string   "title",          null: false
+    t.string   "title",                      null: false
     t.integer  "user_id"
-    t.text     "description",    null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.text     "description",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "category"
-    t.integer  "comments_count"
+    t.integer  "comments_count", default: 0
     t.index ["meeting_id"], name: "index_talks_on_meeting_id"
     t.index ["user_id"], name: "index_talks_on_user_id"
   end
