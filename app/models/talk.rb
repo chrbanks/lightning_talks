@@ -20,4 +20,8 @@ class Talk < ApplicationRecord
   def previous
     meeting.talks.where("id < ?", id).last
   end
+
+  def popular?
+    favorites.size >= 5
+  end
 end
