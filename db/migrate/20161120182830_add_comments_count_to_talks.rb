@@ -12,7 +12,7 @@ class AddCommentsCountToTalks < ActiveRecord::Migration[5.0]
         UPDATE talks
            SET comments_count = (SELECT count(1)
                                    FROM comments
-                                  WHERE comments.talk_id = talks.id)
+                                  WHERE comments.commentable_id = talks.id)
     SQL
   end  
 end
