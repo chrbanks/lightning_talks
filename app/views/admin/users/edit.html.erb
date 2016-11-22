@@ -1,4 +1,8 @@
-<h2 class='space-bottom1'>Edit User</h2>
-<%= render 'form', user: @user %>
-<%= link_to 'Show', admin_user_path(@user) %> |
-<%= link_to 'Back to users', admin_users_path %>
+<%= currently_at 'Edit User' %>
+
+<div class='dark'>
+  <h2 class='space-bottom1'>Edit User</h2>
+  <%= render 'form', user: @user %>
+  <%= link_to 'Show', admin_user_path(@user) %> |
+  <%= link_to 'Back to users', admin_users_path %>
+</div>

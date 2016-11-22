@@ -1,15 +1,8 @@
-<%= form_for [@meeting, @talk] do |f| %>
-  <% if @talk.errors.any? %>
-    <div class='alert errors fill-light space-bottom'>
-      <h4>There was a problem with your submission.</h4>
-      <p>
-        Errors have been <span class='danger'>highlighted</span> below.
-      </p>
-    </div>
+<%= form_for([@meeting, @talk], html: { class: 'pad4x dark' }) do |f| %>
+  <% if @talk.errors.include?(:base) %>
+    <%= content_tag :small, @talk.errors.full_messages_for(:base).join(', '), 
+                    class: 'error-message space-bottom' %>
   <% end %>
-
-  <%= content_tag :small, @talk.errors.full_messages_for(:base).join(', '), class: 'error-message space-bottom' if @talk.errors.include?(:base) %>
-
   <fieldset>
     <%= f.label :title %>
     <%= f.text_field :title, class: 'stretch' %>
@@ -19,8 +12,19 @@
     <%= f.text_area :description, class: 'stretch' %>
   </fieldset>
   <fieldset>
-    <%= f.label :meeting %>
-    <%= f.collection_select(:meeting_id, Meeting.where("date > ?", Date.today), :id, :title, selected: @meeting.id) %>
+    <%= f.label :category %>
+    <div class='input-group col-xs-12'>
+      <%= f.select :category, [['Mobile', 'mobile'], ['Developer Tools', 'developer_tools'], ['Design', 'design'], ['Front-end', 'front_end'], ['Database', 'database'], ['Learning', 'learning'], ['News', 'news']], {}, { class: 'stretch' } %>
+      <i class='icon icon-chevron-down'></i>
+    </div>
   </fieldset>
-  <%= f.submit nil, class: 'btn btn-primary space-bottom' %>
+  <fieldset>
+    <%= f.label :meeting %>
+    <%= f.collection_select(:meeting_id, 
+                            Meeting.where("date > ?", Date.today), 
+                            :id, :title, selected: @talk.meeting.id) %>
+  </fieldset>
+  <div class='pad1y space-bottom4'>
+    <%= f.submit nil, class: 'btn btn-primary btn-wide' %>
+  </div>
 <% end %>

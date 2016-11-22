@@ -1,35 +1,100 @@
-<%= content_tag :p, class: 'space-bottom fill-green dark pad2' do %>
-  <%= notice %>
-<% end if notice %>
+<%= currently_at 'Talk' %>
 
-<h2 class='space-bottom1'><%= @talk.title %></h2>
+<header class='inset-header talk dark center'>
+  <div class='container-fluid contain clearfix pad4x'>
+    <%= next_talk @talk %>
+    <%= previous_talk @talk %>
+    <h1><%= @talk.title %></h1>
+    <p class='lead quiet'><%= @talk.description %></p>
+    <div>
+      <div class='pad1x inline'>
+        By
+        <a href='#fakelink'>
+          <%= avatar_for @talk.user, width: 24, class: 'img-rounded', 
+                         style: 'margin: 0 5px' %><%= @talk.user.full_name %>
+        </a>
+        <span>
+          on <%= link_to @talk.meeting.title, @talk.meeting, class: 'quiet' %>
+        </span>
+      </div>
+      <div class='inline pad1x keyline-left'>
+        <%= category_link_for(@talk) %>
+      </div>
+    </div>
+    <ul class='actions pin-bottomright'>
+      <% if (DateTime.now < @talk.meeting.date && (signed_in? && current_user.id == @talk.user_id)) || current_user.admin? %>
+        <li>
+          <%= link_to 'Destroy', @talk,
+              method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </li>
+      <% end %>
+      <% if current_user.admin? %>
+        <li>
+          <%= link_to 'Edit', edit_talk_path(@talk), class: 'btn btn-loud' %>
+        </li>
+      <% end %>
+      <% if signed_in? && current_user.id == @talk.user.id %>
+        <li>
+          <%= link_to 'Edit', edit_talk_path(@talk), class: 'btn btn-primary' %>
+        </li>
+      <% end %>      
+      <li>
+        <a href='#comments' class='btn btn-default'>
+          <i class='icon icon-comment quiet pad0r' style='font-size: 14px;'></i><%= @comments.size %>
+        </a>
+      </li>
+      <li>
+        <a href='#fakelink' class='btn btn-default favorite'>
+          <i class='icon icon-heart quiet pad0r' style='font-size: 14px;'></i><span class='count'>12</span>
+        </a>
+      </li>
+      <li>
+        <a href='#fakelink' class='btn btn-success'>
+          <i class='icon icon-download-alt' style='font-size: 14px;'></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
 
-<p>
-  <strong>Lightning talk session:</strong>
-  <%= @talk.meeting.title %>
-</p>
+<div class='container-fluid contain pad4y text-default'>
 
-<p>
-  <strong>User:</strong>
-  <%= @talk.user.full_name %>
-</p>
+  <article class='fill-white pad4 round space-bottom4 clearfix col-sm-10 col-sm-offset-1'>
+    <div class='pad2'>
+      <section class='prose space-bottom4'>
+        <h4>Overview</h4>
+        <p>
+          Each handcrafted journal is made from <a href='#fakelink'>premium natural</a> raw leather. This buttery soft vegetable-tanned leather will <strong>darken</strong> over time and look even <em>better</em> as it ages. The more you use it, the better it looks. Each journal comes in a handy cotton pouch.
+        </p>
+        <p class='small quiet'>
+          *Please note: each piece of leather will have slight variations and markings, making each journal truly one of a kind.
+        </p>
+        <span class='fill-blue dark pad0 small round inline space-bottom0'>coding</span>
+        <span class='fill-blue dark pad0 small round inline space-bottom0'>magic</span>
+        <span class='fill-blue dark pad0 small round inline space-bottom0'>activerecord</span>
+        <span class='fill-blue dark pad0 small round inline space-bottom0'>devops</span>
+        <span class='fill-blue dark pad0 small round inline space-bottom0'>databases</span>
+      </section>
+      <section class='pad0y'>
+        <a id='comments'></a>
+        <h4><%= pluralize @comments.size, 'comment' %></h4>
+        <%= render @comments %>
+        <%= form_for [@talk, @comment] do |f| %>
+          <div class='media pad0y'>
+            <a class='media-left pad1r' href='#fakelink'>
+              <%= avatar_for current_user, width: 48, class: 'img-rounded' %>
+            </a>
+            <div class='media-body with-input'>
+              <%= f.text_area :comment, 
+                              class: 'stretch space-bottom1', 
+                              placeholder: 'Leave a comment, be nice...', 
+                              required: true %>
+              <%= f.submit 'Post comment', class: 'btn btn-primary' %>
+            </div>
+          </div>
+        <% end %>
+      </section>
+    </div>
+  </article>
 
-<p>
-  <strong>Description:</strong>
-  <%= @talk.description %>
-</p>
-
-
-<p>
-  <% if current_user.admin? %>
-    <%= link_to 'Edit (Admin)', edit_admin_meeting_talk_path(@meeting, @talk), class: 'btn btn-loud' %>
-  <% end %>
-  <% if signed_in? && current_user.id == @talk.user.id %>
-    <%= link_to 'Edit', edit_meeting_talk_path(@meeting, @talk), class: 'btn btn-primary' %>
-  <% end %>
-  <% if (DateTime.now < @meeting.date && (signed_in? && current_user.id == @talk.user_id)) || current_user.admin? %>
-    <%= link_to 'Destroy', meeting_talk_path(@meeting, @talk),
-        method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-  <% end %>
-  <%= link_to 'View all', meeting_path(@meeting), class: 'btn btn-default' %>
-</p>
+</div>

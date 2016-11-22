@@ -1,0 +1,15 @@
+<div class='col-md-4 col-sm-6 pad2'>
+  <%= link_to meeting, class: 'meeting block fill-darken1 dark round pad3 contain quiet' do %>
+    <h3 class='pad0y space-bottom0'>
+      <%= meeting.title %>
+    </h3>
+    <p class='strong quiet space-bottom'>
+      <%= pluralize meeting.talks.count, 'talk' %>
+    </p>
+    <% meeting.talks.first(10).each do |talk| %>
+      <%= avatar_for talk.user, 
+                     class: 'speaker space-bottom1 inline img-circle' %>
+    <% end %>
+    <%= additional_speakers meeting, 10 %>
+  <% end %>
+</div>    

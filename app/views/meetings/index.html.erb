@@ -1,38 +1,28 @@
+<%= currently_at 'Talks' %>
+
 <%= content_tag :p, class: 'space-bottom fill-green dark pad2' do %>
   <%= notice %>
 <% end if notice %>
 
-<header class='clearfix space-bottom'>
-  <h3 class='col-xs-12'>Lightning Talk Sessions</h3>
+<header class='inset-header dark'>
+  <div class='container-fluid contain clearfix'>
+    <div>
+      <h1>All Talks</h1>
+      <p class='lead quiet'>Sirloin, ground round, fatback, lorem ipsum dolor sit amet</p>
+      <ul class='actions pin-bottomright'>
+        <% if current_user.admin? %>
+          <li>
+            <%= link_to 'New Session', new_meeting_path, class: 'btn btn-primary' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </header>
 
-<table class='breathe'>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Title</th>
-      <th>Location</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @meetings.each do |meeting| %>
-      <tr>
-        <td>
-          <%= format_date(meeting.date.to_s) %>
-        </td>
-        <td>
-          <%= link_to meeting.title, meeting %>
-        </td>
-        <td>
-          <%= meeting.location %>
-        </td>
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-  <% if current_user.admin? %>
-    <%= link_to new_meeting_path, class: 'btn btn-primary' do %>
-    <i class='icon icon-plus icon-sm pad0r'></i>New Lightning talk session
-  <% end %>
-<% end %>
+<div class='container-fluid contain pad4y'>
+  <div class='contain clearfix' style='margin: -20px;'>
+    <%= render @meetings %>
+  </div>
+  <%= paginate @meetings %>
+</div>

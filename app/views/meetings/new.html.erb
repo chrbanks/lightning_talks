@@ -1,3 +1,14 @@
-<h2 class='space-bottom1'>New Lightning Talk Session</h2>
-<%= render 'form', meeting: @meeting %>
-<%= link_to 'Back to list', root_path %>
+<%= currently_at 'New Session' %>
+
+<header class='dark pad4y center'>
+  <div class='container-fluid contain clearfix'>
+    <h1>New Session</h1>
+    <p class='lead quiet'>Bacon ipsum dolor amet hamburger capicola</p>
+  </div>
+</header>
+
+<div class='container-fluid contain'>
+  <div class='col-sm-8 col-sm-offset-2'>
+    <%= render 'form' %>
+  </div>
+</div>

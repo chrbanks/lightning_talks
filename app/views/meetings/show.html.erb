@@ -1,72 +1,35 @@
-<%= content_tag :p, class: 'space-bottom fill-green dark pad2' do %>
-  <%= notice %>
-<% end if notice %>
+<%= currently_at 'Session' %>
 
-<h2 class='space-bottom1'><%= @meeting.title %></h2>
+<header class='inset-header dark'>
+  <div class='container-fluid contain clearfix'>
+    <div>
+      <h1><%= @meeting.title %></h1>
+      <p class='lead quiet'><%= pluralize @meeting.talks.size, 'talk' %></p>
+      <ul class='actions pin-bottomright'>
+        <% if current_user.admin? %>
+          <li>
+            <%= link_to 'Edit', edit_meeting_path(@meeting), class: 'btn btn-default' %>
+          </li>
+          <li>
+            <%= link_to 'Destroy', @meeting, 
+                                   method: :delete, 
+                                   data: { confirm: 'Are you sure?' },
+                                   class: 'btn btn-danger' %>
+          </li>
+          <li>
+            <%= link_to 'New Talk for User', new_admin_meeting_talk_path(@meeting), class: 'btn btn-primary' %>
+          </li>
+        <% end %>
+        <li>
+          <%= link_to 'New Talk', new_meeting_talk_path(@meeting), class: 'btn btn-success' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
 
-<p>
-  <strong>Date:</strong>
-  <%= format_date(@meeting.date.to_s) %>
-</p>
-
-<p>
-  <strong>Organizer:</strong>
-  <%= @meeting.user.full_name %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @meeting.location %>
-</p>
-
-
-<p>
-  <% if current_user.admin? %>
-    <%= link_to 'Edit', edit_meeting_path(@meeting), class: 'btn btn-primary' %>
-    <%= link_to 'Destroy', @meeting, method: :delete, data: { confirm: 'Are you sure?' },
-        class: 'btn btn-danger' %>
-  <% end %>
-  <%= link_to 'View all', root_path, class: 'btn btn-default' %>
-</p>
-
-<hr>
-
-<h3>Lightning Talks</h3>
-
-<table class='breathe'>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>User</th>
-      <th>Description</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @talks.each do |talk| %>
-      <tr>
-        <td>
-          <%= link_to talk.title, meeting_talk_path(@meeting, talk) %>
-        </td>
-        <td>
-          <%= talk.user.full_name %>
-        </td>
-        <td>
-          <%= talk.description %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to new_meeting_talk_path(@meeting), class: 'btn btn-primary' do %>
-  <i class='icon icon-plus icon-sm pad0r'></i>New Talk
-<% end %>
-
-<% if current_user.admin? %>
-  <%= link_to new_admin_meeting_talk_path(@meeting), class: 'btn btn-loud' do %>
-    <i class='icon icon-plus icon-sm pad0r'></i>New Talk for User
-  <% end %>
-<% end %>
-
-
+<div class='container-fluid contain pad4y'>
+  <div class='contain clearfix talks'>
+    <%= render @talks %>
+  </div>
+</div>

@@ -1,6 +1,5 @@
-<%= form_for(@meeting) do |f| %>
+<%= form_for(@meeting, html: { class: 'pad4x dark' }) do |f| %>
   <%= content_tag :small, @meeting.errors.full_messages_for(:base).join(', '), class: 'error-message space-bottom' if @meeting.errors.include?(:base) %>
-
   <fieldset>
     <%= f.label :date %>
     <%= f.datetime_local_field :date, class: 'stretch' %>
@@ -13,5 +12,8 @@
     <%= f.label :location %>
     <%= f.text_field :location, class: 'stretch' %>
   </fieldset>
-  <%= f.submit nil, class: 'btn btn-primary space-bottom' %>
+  <div class='pad1y space-bottom4'>
+    <%= f.submit nil, class: 'btn btn-primary btn-wide' %>
+    <%= link_to 'Cancel', @meeting, class: 'btn btn-default' %>
+  </div>
 <% end %>

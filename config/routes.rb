@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   end
 
   resources :meetings do
-    resources :talks
+    resources :talks, only: [:new, :create]
+  end
+  
+  resources :talks, only: [:show, :edit, :update, :destroy] do
+    resource :comments, only: [:create]
   end
 
   get  'signin' => 'sessions#new'

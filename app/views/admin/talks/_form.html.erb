@@ -1,4 +1,4 @@
-<%= form_for [:admin, @meeting, @talk] do |f| %>
+<%= form_for [:admin, @meeting, @talk], html: { class: 'pad4x dark' } do |f| %>
   <%= content_tag :small, @talk.errors.full_messages_for(:base).join(', '), class: 'error-message space-bottom' if @talk.errors.include?(:base) %>
 
   <fieldset>

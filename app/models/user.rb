@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   include Gravtastic
-  gravtastic
+  gravtastic default: 'identicon'
 
-  before_create :set_admin, :get_info
+  before_create :set_admin
+  before_create :get_info
   has_many :meetings
 
   validates :username, presence: true

@@ -1,4 +1,14 @@
-<h2 class='space-bottom1'>Edit Talk</h2>
-<%= render 'form', talk: @talk %>
-<%= link_to 'Show', meeting_talk_path(@meeting, @talk) %> |
-<%= link_to 'View all', meeting_path(@meeting) %>
+<%= currently_at 'Edit Talk' %>
+
+<header class='dark pad4y center'>
+  <div class='container-fluid contain clearfix'>
+    <h1>Edit Talk</h1>
+    <p class='lead quiet'>Bacon ipsum dolor amet hamburger capicola</p>
+  </div>
+</header>
+
+<div class='container-fluid contain'>
+  <div class='col-sm-8 col-sm-offset-2'>
+    <%= render 'form' %>
+  </div>
+</div>
