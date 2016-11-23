@@ -1,9 +1,11 @@
 <div id="<%= dom_id(comment) %>" class='media space-bottom'>
-  <a class='media-left pad1r' href='#fakelink'>
+  <%= link_to comment.user, class: 'media-left pad1r' do %>
     <%= avatar_for comment.user, width: 48, class: 'img-rounded' %>
-  </a>
+  <% end %>
   <div class='media-body'>
-    <h4 class='inline'><%= comment.user.first_name %></h4><a href="#<%= dom_id(comment) %>" class='pad0x strong quiet small'>• <%= time_ago_in_words(comment.created_at) %> ago</a>
+    <h4 class='inline'>
+      <%= link_to comment.user.first_name, comment.user, class: 'text-default' %>
+    </h4><a href="#<%= dom_id(comment) %>" class='pad0x strong quiet small'>• <%= time_ago_in_words(comment.created_at) %> ago</a>
     <p><%= comment.comment %></p>
   </div>
 </div>

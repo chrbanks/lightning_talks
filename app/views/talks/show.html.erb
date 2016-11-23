@@ -13,10 +13,10 @@
     <div>
       <div class='pad1x inline'>
         By
-        <a href='#fakelink'>
+        <%= link_to @talk.user do %>
           <%= avatar_for @talk.user, width: 24, class: 'img-rounded', 
                          style: 'margin: 0 5px' %><%= @talk.user.full_name %>
-        </a>
+        <% end %>
         <span>
           on <%= link_to @talk.meeting.title, @talk.meeting, class: 'quiet' %>
         </span>
