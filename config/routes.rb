@@ -24,12 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :relationships do
-    member do
-      get :following, :followers
-    end
-  end
-
+  resources :relationships, only: [:create, :destroy]
   resources :favorites
 
   get  'signin' => 'sessions#new'

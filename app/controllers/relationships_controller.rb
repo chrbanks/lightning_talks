@@ -1,7 +1,7 @@
 class RelationshipsController < ApplicationController
-  def following
+  def create
   end
 
-  def followers
+  def destroy
   end
 end

@@ -5,7 +5,6 @@ class TalksController < ApplicationController
 
   def index
     @talks = @user.talks
-    respond_to :js
   end
 
   def show

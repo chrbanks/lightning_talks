@@ -3,7 +3,6 @@ class FavoritesController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @talks = @user.favorite_talks
-    respond_to :js
   end
 
   def create
