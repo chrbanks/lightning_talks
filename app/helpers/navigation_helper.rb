@@ -16,7 +16,7 @@ module NavigationHelper
   def tab_link(title, url, options = {}, &block)
     options[:class] ||= ''
     options[:class] << ' tab-link keyline-bottom quiet pad1y inline'
-    options[:class] << ' active' if current_page.data.tab == title
+    options[:class] << ' active' if request.path == url
     options[:href] = url
     content_tag :a, title, options, &block
   end

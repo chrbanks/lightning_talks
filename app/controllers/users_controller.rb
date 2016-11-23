@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @talks = @user.talks
   end
 
   private
