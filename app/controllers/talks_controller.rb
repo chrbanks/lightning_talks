@@ -1,6 +1,12 @@
 class TalksController < ApplicationController
-  before_action :set_talk, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:index]
   before_action :set_meeting, only: [:new, :create]
+  before_action :set_talk, only: [:show, :edit, :update, :destroy]
+
+  def index
+    @talks = @user.talks
+    respond_to :js
+  end
 
   def show
     @comments = @talk.comments.includes(:user).to_a
@@ -37,6 +43,10 @@ class TalksController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
   def set_meeting
     @meeting = Meeting.find(params[:meeting_id])

@@ -13,35 +13,32 @@
         <p class='lead quiet'>Product designer at Bluth Company</p>
         <ul class='stats'>
           <li class='inline hidden-xs'>
-            <%= link_to '#fakelink', class: 'block pad2r text-default', 
-                        data: { toggle: 'tab', href: user_path(@user),
-                        remote: true } do %>
+            <%= link_to user_talks_path(@user), 
+                        class: 'block pad2r text-default', 
+                        remote: true do %>
               <strong class='block space-bottom0'><%= @user.talks.size %></strong>
               <small class='quiet'>Talks</small>
             <% end %>
           </li>
           <li class='inline'>
-            <%= link_to '#fakelink', 
+            <%= link_to followers_user_path(@user), 
                         class: 'block pad2x keyline-left text-default followers',
-                        data: { toggle: 'tab', href: followers_user_path(@user) },
                         remote: true do %>
               <strong class='block space-bottom0'><%= @user.followers.size %></strong>
               <small class='quiet'>Followers</small>
             <% end %>
           </li>
           <li class='inline'>
-            <%= link_to '#fakelink', 
+            <%= link_to following_user_path(@user),
                         class: 'block pad2x keyline-left text-default',
-                        data: { toggle: 'tab', href: following_user_path(@user) },
                         remote: true do %>
               <strong class='block space-bottom0'><%= @user.followed_users.size %></strong>
               <small class='quiet'>Following</small>
             <% end %>
           </li>
           <li class='inline hidden-xs'>
-            <%= link_to '#fakelink', 
+            <%= link_to user_favorites_path(@user),
                         class: 'block pad2x keyline-left text-default',
-                        data: { toggle: 'tab', href: favorites_user_path(@user) },
                         remote: true do %>
               <strong class='block space-bottom0'><%= @user.favorites.size %></strong>
               <small class='quiet'>Favorites</small>
@@ -62,19 +59,25 @@
 
 <div class='container-fluid contain'>
   <nav class='space-bottom4 dark tabs'>
-    <%= tab_link 'Talks', '#fakelink', class: 'active', remote: true,
-                 data: { toggle: 'tab', href: user_path(@user) } %>
-    <%= tab_link 'Favorites', '#fakelink', remote: true,
-                 data: { toggle: 'tab', href: favorites_user_path(@user) } %>
-    <%= tab_link 'Activity', '#fakelink', remote: true,
-                 data: { toggle: 'tab', href: activity_user_path(@user) } %>
-    <%= tab_link 'Followers', '#fakelink', remote: true,
-                 data: { toggle: 'tab', href: followers_user_path(@user) } %>
-    <%= tab_link 'Following', '#fakelink', remote: true,
-                 data: { toggle: 'tab', href: following_user_path(@user) } %>
+    <%= tab_link 'Talks', 
+                 user_talks_path(@user), 
+                 class: 'active',
+                 data: { toggle: 'tab', remote: true, tab: 'talks' } %>
+    <%= tab_link 'Favorites', 
+                 user_favorites_path(@user),
+                 data: { toggle: 'tab', remote: true, tab: 'favorites' } %>
+    <%= tab_link 'Activity', 
+                 '#fakelink',
+                 data: { toggle: 'tab', remote: true, tab: 'activity' } %>
+    <%= tab_link 'Followers',
+                 followers_user_path(@user),
+                 data: { toggle: 'tab', remote: true, tab: 'followers' } %>
+    <%= tab_link 'Following',
+                 following_user_path(@user),
+                 data: { toggle: 'tab', remote: true, tab: 'following' } %>
   </nav>
-  <div class='tab-content'>
-    <div class='contain clearfix talks'>
+  <div class='tab-content contain clearfix space-bottom4'>
+    <div class='talks'>
       <%= render @talks %>
     </div>
   </div>

@@ -17,8 +17,10 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index, :show] do
+    resources :talks, only: [:index]
+    resources :favorites, only: [:index]
     member do
-      get :favorites, :activity, :followers, :following
+      get :following, :followers
     end
   end
 
