@@ -16,8 +16,8 @@
             <%= link_to '#fakelink', class: 'block pad2r text-default', 
                         data: { toggle: 'tab', href: user_path(@user),
                         remote: true } do %>
-              <strong class='block space-bottom0'>15</strong>
-              <small class='quiet'>Talks</small>                
+              <strong class='block space-bottom0'><%= @user.talks.size %></strong>
+              <small class='quiet'>Talks</small>
             <% end %>
           </li>
           <li class='inline'>
@@ -25,7 +25,7 @@
                         class: 'block pad2x keyline-left text-default followers',
                         data: { toggle: 'tab', href: followers_user_path(@user) },
                         remote: true do %>
-              <strong class='block space-bottom0'>26</strong>
+              <strong class='block space-bottom0'><%= @user.followers.size %></strong>
               <small class='quiet'>Followers</small>
             <% end %>
           </li>
@@ -34,7 +34,7 @@
                         class: 'block pad2x keyline-left text-default',
                         data: { toggle: 'tab', href: following_user_path(@user) },
                         remote: true do %>
-              <strong class='block space-bottom0'>5</strong>
+              <strong class='block space-bottom0'><%= @user.followed_users.size %></strong>
               <small class='quiet'>Following</small>
             <% end %>
           </li>
@@ -43,7 +43,7 @@
                         class: 'block pad2x keyline-left text-default',
                         data: { toggle: 'tab', href: favorites_user_path(@user) },
                         remote: true do %>
-              <strong class='block space-bottom0'>33</strong>
+              <strong class='block space-bottom0'><%= @user.favorites.size %></strong>
               <small class='quiet'>Favorites</small>
             <% end %>
           </li>
