@@ -1,0 +1,7 @@
+<%= form_for current_user.favorites.find_by(talk: @talk), 
+             html: { method: :delete, class: 'inline' },
+             remote: true do |f| %>
+  <%= f.button :submit, class: 'btn btn-default favorite' do %>
+    <i class='icon icon-heart danger pad0r'></i><span id='favorite-count'><%= @talk.favorites.size %></span>
+  <% end %>
+<% end %>

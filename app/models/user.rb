@@ -2,9 +2,10 @@ class User < ApplicationRecord
   include Gravtastic
   gravtastic default: 'identicon'
 
-  before_create :set_admin
-  before_create :get_info
   has_many :meetings
+  has_many :talks
+  has_many :favorites
+  has_many :favorite_talks, through: :favorites, source: :talk
   has_many :active_relationships, class_name:  'Relationship',
                                   foreign_key: 'follower_id',
                                   dependent:   :destroy
@@ -16,6 +17,8 @@ class User < ApplicationRecord
 
   validates :username, presence: true
 
+  before_create :set_admin, :get_info
+  
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -30,6 +33,18 @@ class User < ApplicationRecord
 
   def following?(user)
     followed_users.include? user
+  end
+
+  def favorite?(talk)
+    favorites.exists?(talk: talk)
+  end
+
+  def favorite!(talk)
+    favorites.create!(talk: talk)
+  end
+
+  def unfavorite!(talk)
+    favorites.find_by(talk: talk).destroy
   end
 
   private

@@ -1,25 +1,41 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  subject(:user) { build(:user) }
-
-  describe 'Attributes' do
+describe User do
+  
+  subject(:user) { create :user }
+  
+  describe 'attributes' do
     it { is_expected.to respond_to :id }
     it { is_expected.to respond_to :username }
     it { is_expected.to respond_to :first_name }
     it { is_expected.to respond_to :last_name }
     it { is_expected.to respond_to :email }
     it { is_expected.to respond_to :admin }
+    it { is_expected.to respond_to :meetings }
+    it { is_expected.to respond_to :talks }
+    it { is_expected.to respond_to :favorites }
+    it { is_expected.to respond_to :favorites_count }
+    it { is_expected.to respond_to :favorite_talks }
+    it { is_expected.to respond_to :favorite? }
   end
 
-  describe 'Validations' do
-    context 'valid user' do
-      it { is_expected.to be_valid }
-      it { is_expected.to validate_presence_of :username }
+  describe 'validations' do
+    it { is_expected.to be_valid }
+    it { is_expected.to validate_presence_of :username }
+  end
+
+  describe 'favorite!' do
+    let(:talk) { create :talk }        
+    before { user.favorite!(talk) }
+    it { is_expected.to be_favorite(talk) }
+
+    describe 'and unfavorite!' do
+      before { user.unfavorite!(talk) }
+      it { is_expected.to_not be_favorite(talk) }
     end
   end
 
-  describe 'Following users' do
+  describe 'following users' do
     let(:chris)  { create :user, username: 'cbanks' }
     let(:martin) { create :user, username: 'mrodriquez' }
 

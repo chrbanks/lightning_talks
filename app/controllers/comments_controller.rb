@@ -10,6 +10,15 @@ class CommentsController < ApplicationController
     end
   end
 
+  def create
+    @comment = @talk.comments.new(comment_params)
+    if @comment.save
+      redirect_to @talk
+    else
+      render 'talks/show'
+    end
+  end
+
   private
 
   def set_talk

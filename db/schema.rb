@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120182830) do
+ActiveRecord::Schema.define(version: 20161121041818) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "title",            limit: 50, default: ""
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20161120182830) do
     t.index ["commentable_id"], name: "index_comments_on_commentable_id"
     t.index ["commentable_type"], name: "index_comments_on_commentable_type"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "talk_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["talk_id"], name: "index_favorites_on_talk_id"
+    t.index ["user_id", "talk_id"], name: "index_favorites_on_user_id_and_talk_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -48,25 +58,27 @@ ActiveRecord::Schema.define(version: 20161120182830) do
 
   create_table "talks", force: :cascade do |t|
     t.integer  "meeting_id"
-    t.string   "title",                      null: false
+    t.string   "title",                       null: false
     t.integer  "user_id"
-    t.text     "description",                null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.text     "description",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "category"
-    t.integer  "comments_count", default: 0
+    t.integer  "comments_count"
+    t.integer  "favorites_count", default: 0
     t.index ["meeting_id"], name: "index_talks_on_meeting_id"
     t.index ["user_id"], name: "index_talks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",                   null: false
+    t.string   "username",                        null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.boolean  "admin",      default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "admin",           default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "favorites_count", default: 0
     t.index ["username"], name: "index_users_on_username"
   end
 

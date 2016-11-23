@@ -1,0 +1,2 @@
+$("#favorite-form").html("<%= escape_javascript(render('talks/favorite')) %>")
+$("#favorite-count").html('<%= @talk.favorites.count %>')

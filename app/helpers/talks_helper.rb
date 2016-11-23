@@ -1,7 +1,7 @@
 module TalksHelper
 
-  def category_link_for(talk)
-    presenter = CategoryLink.new(talk.category, self)
+  def category_for(talk)
+    presenter = Category.new(talk.category, self)
     if block_given?
       yield presenter
     else
@@ -20,4 +20,9 @@ module TalksHelper
       content_tag :i, nil, class: 'icon icon-arrow-left'
     end if talk.previous
   end
+
+  def favorite_icon(talk)
+    color = current_user.favorite?(talk) ? 'danger' : 'quiet'
+    content_tag :i, nil, class: "icon icon-heart icon-md #{color}"
+  end  
 end

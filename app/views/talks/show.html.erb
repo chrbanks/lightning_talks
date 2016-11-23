@@ -4,8 +4,12 @@
   <div class='container-fluid contain clearfix pad4x'>
     <%= next_talk @talk %>
     <%= previous_talk @talk %>
-    <h1><%= @talk.title %></h1>
-    <p class='lead quiet'><%= @talk.description %></p>
+    <h1>
+      <%= @talk.title %>
+    </h1>
+    <p class='lead quiet'>
+      <%= @talk.description %>
+    </p>
     <div>
       <div class='pad1x inline'>
         By
@@ -18,14 +22,16 @@
         </span>
       </div>
       <div class='inline pad1x keyline-left'>
-        <%= category_link_for(@talk) %>
+        <%= category_for(@talk) %>
       </div>
     </div>
     <ul class='actions pin-bottomright'>
       <% if (DateTime.now < @talk.meeting.date && (signed_in? && current_user.id == @talk.user_id)) || current_user.admin? %>
         <li>
           <%= link_to 'Destroy', @talk,
-              method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+                                 method: :delete, 
+                                 data: { confirm: 'Are you sure?' }, 
+                                 class: 'btn btn-danger' %>
         </li>
       <% end %>
       <% if current_user.admin? %>
@@ -40,17 +46,15 @@
       <% end %>      
       <li>
         <a href='#comments' class='btn btn-default'>
-          <i class='icon icon-comment quiet pad0r' style='font-size: 14px;'></i><%= @comments.size %>
+          <i class='icon icon-comment quiet pad0r'></i><%= @comments.size %>
         </a>
       </li>
       <li>
-        <a href='#fakelink' class='btn btn-default favorite'>
-          <i class='icon icon-heart quiet pad0r' style='font-size: 14px;'></i><span class='count'>12</span>
-        </a>
+        <%= render 'favorite_form' %>
       </li>
       <li>
         <a href='#fakelink' class='btn btn-success'>
-          <i class='icon icon-download-alt' style='font-size: 14px;'></i>
+          <i class='icon icon-download-alt'></i>
         </a>
       </li>
     </ul>

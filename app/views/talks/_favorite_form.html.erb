@@ -1,0 +1,7 @@
+<div id='favorite-form' class='inline'>
+  <% if current_user.favorite?(@talk) %>
+    <%= render 'unfavorite' %>
+  <% else %>
+    <%= render 'favorite' %>
+  <% end %>
+</div>

@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :favorites
+
   get  'signin' => 'sessions#new'
   post 'saml/consume' => 'sessions#create'
   post 'sessions/create' => 'sessions#create'

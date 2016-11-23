@@ -12,6 +12,8 @@ describe Talk do
     it { is_expected.to respond_to :meeting_id }
     it { is_expected.to respond_to :category }
     it { is_expected.to respond_to :comments_count }
+    it { is_expected.to respond_to :favorites_count }
+    it { is_expected.to respond_to :favorites }
   end
 
   describe 'validations' do    
@@ -44,6 +46,19 @@ describe Talk do
 
     it 'returns nil if this is the first talk' do
       expect(first.previous).to eq nil
+    end
+  end
+
+  describe 'popularity' do
+
+    context 'when talk has at least 5 favorites' do
+      subject(:talk) { create :talk, favorites_count: 5 }
+      it { is_expected.to be_popular }
+    end
+
+    context 'when talk has less than 5 favorites' do
+      subject(:talk) { create :talk, favorites_count: 4 }
+      it { is_expected.to_not be_popular }
     end
   end
 end
