@@ -19,6 +19,8 @@ class User < ApplicationRecord
 
   before_create :set_admin, :get_info
 
+  scope :speaker, -> { where('talks_count > 0') }
+
   def full_name
     "#{first_name} #{last_name}"
   end

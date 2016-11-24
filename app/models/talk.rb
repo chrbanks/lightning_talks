@@ -1,6 +1,6 @@
 class Talk < ApplicationRecord
   belongs_to :meeting
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   has_many :favorites
 
   acts_as_commentable
