@@ -14,5 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require kabu
+//= require spin.min
+//= require ladda.min
 //= require pace
 //= require_tree .

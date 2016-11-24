@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @talks = @user.talks
+    @talks = @user.talks.page(1)
   end
 
   def followers

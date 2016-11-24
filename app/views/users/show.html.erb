@@ -76,9 +76,7 @@
                  following_user_path(@user),
                  data: { toggle: 'tab', remote: true, tab: 'following' } %>
   </nav>
-  <div class='tab-content contain clearfix space-bottom4'>
-    <div class='talks'>
-      <%= render @talks %>
-    </div>
+  <div class='tab-content space-bottom4'>
+    <%= render 'users/talks' %>
   </div>
 </div>

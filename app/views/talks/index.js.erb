@@ -1,3 +1,9 @@
-$('.tab-content').html("<div class='talks'><%=j render @talks %></div>")
-$('.tabs .tab-link').removeClass('active')
-$('.tabs [data-tab="talks"]').addClass('active')
+<% if params[:page] %>
+  $('.tab-content .talks').append("<%=j render @talks %>")
+  $('.load-more').replaceWith("<%=j load_more @talks, user_talks_path(@user, page: @talks.next_page) %>")
+<% else %>
+  $('.tab-content').html("<%=j render 'users/talks' %>")
+  $('.tabs .tab-link').removeClass('active')
+  $('.tabs [data-tab="talks"]').addClass('active')
+<% end %>
+Ladda.bind('.ladda-button')

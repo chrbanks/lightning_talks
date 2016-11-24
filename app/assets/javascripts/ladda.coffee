@@ -1,0 +1,2 @@
+$ ->
+  Ladda.bind('.ladda-button')

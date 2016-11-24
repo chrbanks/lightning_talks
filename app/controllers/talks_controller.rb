@@ -4,7 +4,7 @@ class TalksController < ApplicationController
   before_action :set_talk, only: [:show, :edit, :update, :destroy]
 
   def index
-    @talks = @user.talks
+    @talks = @user.talks.page(params[:page])
   end
 
   def show
