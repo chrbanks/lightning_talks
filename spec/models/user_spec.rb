@@ -83,4 +83,15 @@ describe User do
       end
     end
   end
+
+  describe '#speaker?' do
+    context 'when user has given a talk' do
+      subject(:user) { create :user, talks: create_list(:talk, 5) }
+      it { is_expected.to be_a_speaker }
+    end
+
+    context 'when user has not given a talk' do
+      it { is_expected.to_not be_a_speaker }
+    end
+  end
 end

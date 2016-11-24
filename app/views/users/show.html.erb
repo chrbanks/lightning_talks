@@ -8,7 +8,7 @@
       <% end %>
       <div class='media-body pad1l'>
         <h1>
-          <%= @user.full_name %><span class='badge fill-lighten0 dark small pad1x round inline'>speaker</span>
+          <%= @user.full_name %><%= speaker_badge(@user) %>
         </h1>
         <p class='lead quiet'>Product designer at Bluth Company</p>
         <ul class='stats'>

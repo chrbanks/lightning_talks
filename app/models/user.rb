@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :username, presence: true
 
   before_create :set_admin, :get_info
-  
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -45,6 +45,10 @@ class User < ApplicationRecord
 
   def unfavorite!(talk)
     favorites.find_by(talk: talk).destroy
+  end
+
+  def speaker?
+    talks.any?
   end
 
   private
