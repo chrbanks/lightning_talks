@@ -6,6 +6,6 @@
     <h4 class='inline'>
       <%= link_to comment.user.first_name, comment.user, class: 'text-default' %>
     </h4><a href="#<%= dom_id(comment) %>" class='pad0x strong quiet small'>• <%= time_ago_in_words(comment.created_at) %> ago</a>
-    <p><%= comment.comment %></p>
+    <%= markdown comment.comment %>
   </div>
 </div>
