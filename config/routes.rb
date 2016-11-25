@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'welcome#index'
+
   namespace :admin do
     root 'application#index'
     resources :users
@@ -14,6 +16,9 @@ Rails.application.routes.draw do
   
   resources :talks, only: [:show, :edit, :update, :destroy] do
     resource :comments, only: [:create]
+    collection do
+      get :upcoming, :recent, :popular
+    end
   end
 
   resources :users, only: [:index, :show] do
@@ -30,6 +35,4 @@ Rails.application.routes.draw do
   get  'signin' => 'sessions#new'
   post 'saml/consume' => 'sessions#create'
   post 'sessions/create' => 'sessions#create'
-
-  root 'meetings#index'
 end

@@ -61,4 +61,54 @@ describe Talk do
       it { is_expected.to_not be_popular }
     end
   end
+
+  describe '.upcoming' do
+    let(:talk) { create :talk, meeting: meeting }
+
+    context 'when talk occurs today' do
+      let(:meeting) { create :meeting, date: Date.today }
+      it 'includes talk' do
+        expect(Talk.upcoming).to include talk
+      end
+    end
+
+    context 'when talk occurs after today' do
+      let(:meeting) { create :meeting, date: Date.tomorrow }
+      it 'includes talk' do
+        expect(Talk.upcoming).to include talk
+      end
+    end
+
+    context 'when talk occurs in the past' do
+      let(:meeting) { create :meeting, date: Date.yesterday }
+      it 'excludes talk' do
+        expect(Talk.upcoming).to_not include talk
+      end
+    end
+  end
+
+  describe '.recent' do
+    let(:talk) { create :talk, meeting: meeting }
+
+    context 'when talk occurs today' do
+      let(:meeting) { create :meeting, date: Date.today }
+      it 'excludes talk' do
+        expect(Talk.recent).to_not include talk
+      end
+    end
+
+    context 'when talk occurs after today' do
+      let(:meeting) { create :meeting, date: Date.tomorrow }
+      it 'excludes talk' do
+        expect(Talk.recent).to_not include talk
+      end
+    end
+
+    context 'when talk occurs in the past' do
+      let(:meeting) { create :meeting, date: Date.yesterday }
+      it 'includes talk' do
+        expect(Talk.recent).to include talk
+      end
+    end
+  end
 end

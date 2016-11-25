@@ -41,6 +41,18 @@ class TalksController < ApplicationController
     redirect_to @talk.meeting, notice: 'Talk was successfully deleted.'
   end
 
+  def upcoming
+    @talks = Talk.upcoming.page(1)
+  end
+
+  def recent
+    @talks = Talk.recent.page(1)
+  end
+
+  def popular
+    @talks = Talk.popular.page(1)
+  end
+
   private
 
   def set_user
