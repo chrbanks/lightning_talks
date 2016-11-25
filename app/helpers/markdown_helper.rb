@@ -9,7 +9,7 @@ module MarkdownHelper
   end
 
   def markdown(text)
-    unless text.nil?
+    unless text.blank?
       renderer = HTMLwithPygments.new(hard_wrap: true, filter_html: true)
       options = {
         autolink: true,
