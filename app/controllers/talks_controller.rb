@@ -30,7 +30,7 @@ class TalksController < ApplicationController
 
   def update
     if @talk.update(talk_params)
-      redirect_to @talk, notice: 'Talk was successfully updated'
+      redirect_to @talk
     else
       render :edit
     end
