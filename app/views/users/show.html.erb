@@ -24,7 +24,7 @@
             <%= link_to followers_user_path(@user), 
                         class: 'block pad2x keyline-left text-default followers',
                         remote: true do %>
-              <strong class='block space-bottom0'><%= @user.followers.size %></strong>
+              <strong id='followers-count' class='block space-bottom0'><%= @user.followers.size %></strong>
               <small class='quiet'>Followers</small>
             <% end %>
           </li>
@@ -48,11 +48,11 @@
       </div>
     </div>
     <ul class='actions pin-bottomright'>
-      <li>
-        <%= link_to '#fakelink', class: 'btn btn-primary' do %>
-          <i class='icon icon-plus pad0r' style='margin-top: -2px;'></i>Follow
-        <% end %>
-      </li>
+      <% if signed_in? %>
+        <li>
+          <%= render 'follow_form' %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </header>

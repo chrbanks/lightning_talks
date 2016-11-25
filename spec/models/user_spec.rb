@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe User do
   
-  # subject(:user) { create :user }
+  subject(:user) { create :user }
   
   describe 'attributes' do
     it { is_expected.to respond_to :id }
