@@ -1,6 +1,10 @@
 /* Global styles
 ------------------------------------------------------- */
 
+.overview.prose {
+  h1, h2 { padding-top: 0; }
+}
+
 .ladda-button { transition: none !important; }
 .category { text-transform: uppercase; }
 .meeting { min-height: 219px; }

@@ -69,7 +69,7 @@ class TalksController < ApplicationController
 
   def talk_params
     params.require(:talk)
-          .permit(:meeting_id, :title, :user_id, :description, :category)
+          .permit(:meeting_id, :title, :user_id, :description, :category, :overview)
           .merge(user_id: current_user.id)
   end
 end
