@@ -9,7 +9,12 @@
   </fieldset>
   <fieldset>
     <%= f.label :description %>
-    <%= f.text_area :description, class: 'stretch' %>
+    <%= f.text_field :description, class: 'stretch' %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :overview %>
+    <%= f.text_area :overview, class: 'stretch', rows: 15 %>
+    <a href='https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet' class='small quiet pad0y' target='_blank'>Styling with markdown supported<i class='icon icon-new-window icon-sm'></i></a>
   </fieldset>
   <fieldset>
     <%= f.label :category %>
@@ -23,11 +28,6 @@
     <%= f.collection_select(:meeting_id, 
                             Meeting.where("date > ?", Date.today), 
                             :id, :title, selected: @talk.meeting.id) %>
-  </fieldset>
-  <fieldset>
-    <%= f.label :overview %>
-    <%= f.text_area :overview, class: 'stretch', rows: 15 %>
-    <a href='https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet' class='small quiet pad0y' target='_blank'>Styling with markdown supported<i class='icon icon-new-window icon-sm'></i></a>
   </fieldset>
   <div class='pad1y space-bottom4'>
     <%= f.submit nil, class: 'btn btn-primary btn-wide' %>
