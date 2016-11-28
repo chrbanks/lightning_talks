@@ -20,6 +20,7 @@ gem 'kaminari'
 gem 'acts_as_commentable'
 gem 'pygments.rb'
 gem 'redcarpet'
+gem 'acts-as-taggable-on'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

@@ -67,14 +67,8 @@
     <div class='pad2'>
       <section class='overview prose space-bottom'>
         <h4>Overview</h4>
-        <%= markdown(@talk.overview) || @talk.description %>
-        <div class='pad1y'>
-          <span class='fill-blue dark pad0 small round inline space-bottom0'>coding</span>
-          <span class='fill-blue dark pad0 small round inline space-bottom0'>magic</span>
-          <span class='fill-blue dark pad0 small round inline space-bottom0'>activerecord</span>
-          <span class='fill-blue dark pad0 small round inline space-bottom0'>devops</span>
-          <span class='fill-blue dark pad0 small round inline space-bottom0'>databases</span>
-        </div>
+        <%= markdown(@talk.overview) || content_tag(:p, @talk.description) %>
+        <%= render @talk.tags %>
       </section>
       <section class='pad0y'>
         <a id='comments'></a>

@@ -12,16 +12,21 @@
     <%= f.text_field :description, class: 'stretch' %>
   </fieldset>
   <fieldset>
-    <%= f.label :overview %>
-    <%= f.text_area :overview, class: 'stretch', rows: 15 %>
-    <a href='https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet' class='small quiet pad0y' target='_blank'>Styling with markdown supported<i class='icon icon-new-window icon-sm'></i></a>
-  </fieldset>
-  <fieldset>
     <%= f.label :category %>
     <div class='input-group col-xs-12'>
       <%= f.select :category, [['Mobile', 'mobile'], ['Developer Tools', 'developer_tools'], ['Design', 'design'], ['Front-end', 'front_end'], ['Database', 'database'], ['Learning', 'learning'], ['News', 'news']], {}, { class: 'stretch' } %>
       <i class='icon icon-chevron-down'></i>
     </div>
+  </fieldset>
+  <fieldset>
+    <%= f.label :overview %>
+    <%= f.text_area :overview, class: 'stretch', rows: 15 %>
+    <a href='https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet' class='small quiet pad0y' target='_blank'>Styling with markdown supported<i class='icon icon-new-window icon-sm'></i></a>
+  </fieldset>
+  <fieldset>
+    <%= f.label :tag_list %>
+    <%= f.text_field :tag_list, class: 'stretch tagsinput', 
+                     value: f.object.tag_list.to_s %>
   </fieldset>
   <fieldset>
     <%= f.label :meeting %>

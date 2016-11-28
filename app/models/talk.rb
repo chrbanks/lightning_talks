@@ -4,6 +4,7 @@ class Talk < ApplicationRecord
   has_many :favorites
 
   acts_as_commentable
+  acts_as_taggable
 
   CATEGORIES = %w(mobile developer_tools design front_end database learning news)
   
