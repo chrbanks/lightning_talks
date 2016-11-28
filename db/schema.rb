@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121041818) do
+ActiveRecord::Schema.define(version: 20161125165818) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "title",            limit: 50, default: ""
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20161121041818) do
     t.string   "location",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["date"], name: "index_meetings_on_date"
     t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 
@@ -64,7 +65,7 @@ ActiveRecord::Schema.define(version: 20161121041818) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "category"
-    t.integer  "comments_count"
+    t.integer  "comments_count",  default: 0
     t.integer  "favorites_count", default: 0
     t.index ["meeting_id"], name: "index_talks_on_meeting_id"
     t.index ["user_id"], name: "index_talks_on_user_id"
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20161121041818) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.integer  "favorites_count", default: 0
+    t.integer  "talks_count",     default: 0
     t.index ["username"], name: "index_users_on_username"
   end
 

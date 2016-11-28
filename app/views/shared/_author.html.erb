@@ -1,7 +1,7 @@
 <div class='inline quiet'>
-  <a href='#fakelink'>
+  <%= link_to talk.user do %>
     <%= avatar_for talk.user, width: 20, class: 'img-rounded inline', style: 'margin-right: 3px;' %>
-    <a href='#fakelink'><strong class='quiet'><%= talk.user.first_name %></strong></a>
-  </a>
+    <strong class='quiet'><%= talk.user.first_name %></strong>
+  <% end %>
   <span>on <%= talk.meeting.title %></span>
 </div>

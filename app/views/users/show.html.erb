@@ -1,11 +1,82 @@
-<h2 class='space-bottom1'><%= @user.full_name %></h2>
+<%= currently_at 'User' %>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+<header class='inset-header dark profile'>
+  <div class='container-fluid contain clearfix'>
+    <div class='media contain member-profile'>
+      <%= link_to @user, class: 'media-left pad1r' do %>
+        <%= avatar_for @user, class: 'img-rounded', width: 130 %>
+      <% end %>
+      <div class='media-body pad1l'>
+        <h1>
+          <%= @user.full_name %><%= speaker_badge(@user) %>
+        </h1>
+        <p class='lead quiet'>Product designer at Bluth Company</p>
+        <ul class='stats'>
+          <li class='inline hidden-xs'>
+            <%= link_to user_talks_path(@user), 
+                        class: 'block pad2r text-default', 
+                        remote: true do %>
+              <strong class='block space-bottom0'><%= @user.talks.size %></strong>
+              <small class='quiet'>Talks</small>
+            <% end %>
+          </li>
+          <li class='inline'>
+            <%= link_to followers_user_path(@user), 
+                        class: 'block pad2x keyline-left text-default followers',
+                        remote: true do %>
+              <strong id='followers-count' class='block space-bottom0'><%= @user.followers.size %></strong>
+              <small class='quiet'>Followers</small>
+            <% end %>
+          </li>
+          <li class='inline'>
+            <%= link_to following_user_path(@user),
+                        class: 'block pad2x keyline-left text-default',
+                        remote: true do %>
+              <strong class='block space-bottom0'><%= @user.followed_users.size %></strong>
+              <small class='quiet'>Following</small>
+            <% end %>
+          </li>
+          <li class='inline hidden-xs'>
+            <%= link_to user_favorites_path(@user),
+                        class: 'block pad2x keyline-left text-default',
+                        remote: true do %>
+              <strong class='block space-bottom0'><%= @user.favorites.size %></strong>
+              <small class='quiet'>Favorites</small>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <ul class='actions pin-bottomright'>
+      <% if signed_in? %>
+        <li>
+          <%= render 'follow_form' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</header>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<div class='container-fluid contain'>
+  <nav class='space-bottom4 dark tabs'>
+    <%= tab_link 'Talks', 
+                 user_talks_path(@user), 
+                 class: 'active',
+                 data: { toggle: 'tab', remote: true, tab: 'talks' } %>
+    <%= tab_link 'Favorites', 
+                 user_favorites_path(@user),
+                 data: { toggle: 'tab', remote: true, tab: 'favorites' } %>
+    <%= tab_link 'Activity', 
+                 '#fakelink',
+                 data: { toggle: 'tab', remote: true, tab: 'activity' } %>
+    <%= tab_link 'Followers',
+                 followers_user_path(@user),
+                 data: { toggle: 'tab', remote: true, tab: 'followers' } %>
+    <%= tab_link 'Following',
+                 following_user_path(@user),
+                 data: { toggle: 'tab', remote: true, tab: 'following' } %>
+  </nav>
+  <div class='tab-content space-bottom4'>
+    <%= render 'users/talks' %>
+  </div>
+</div>

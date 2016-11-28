@@ -1,6 +1,7 @@
 /* Global styles
 ------------------------------------------------------- */
 
+.ladda-button { transition: none !important; }
 .category { text-transform: uppercase; }
 .meeting { min-height: 219px; }
 .btn.favorite { vertical-align: middle; }
@@ -124,13 +125,6 @@ textarea, input[type=password], input[type=text], input[type=email], input[type=
   bottom: -55px;
   right: 0;
 
-  .btn { 
-    font-family: 'Open Sans Bold';
-    padding-left: 20px;
-    padding-right: 20px;
-    text-transform: uppercase;
-  }
-
   li { display: inline; }
   .icon { font-size: 14px; }
 }
@@ -184,6 +178,14 @@ a.text-default:hover {
 .btn { 
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.actions .btn,
+.btn-lg { 
+  font-family: 'Open Sans Bold';
+  padding-left: 20px;
+  padding-right: 20px;
+  text-transform: uppercase;
 }
 
 .tab-link {

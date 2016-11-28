@@ -17,6 +17,7 @@ describe User do
     it { is_expected.to respond_to :favorites_count }
     it { is_expected.to respond_to :favorite_talks }
     it { is_expected.to respond_to :favorite? }
+    it { is_expected.to respond_to :talks_count }
   end
 
   describe 'validations' do
@@ -81,6 +82,30 @@ describe User do
         expect(martin.following? chris).to be_falsey
         expect(martin.followers.include? chris).to be_truthy
       end
+    end
+  end
+
+  describe '#speaker?' do
+    context 'when user has given a talk' do
+      subject(:user) { create :user, talks: create_list(:talk, 5) }
+      it { is_expected.to be_a_speaker }
+    end
+
+    context 'when user has not given a talk' do
+      it { is_expected.to_not be_a_speaker }
+    end
+  end
+
+  describe '.speaker' do
+    let(:user) { create :user }
+    
+    it 'excludes users that are not speakers' do
+      expect(User.speaker).to_not include user
+    end
+
+    it 'includes users that are speakers' do
+      create_list :talk, 1, user: user
+      expect(User.speaker).to include user
     end
   end
 end

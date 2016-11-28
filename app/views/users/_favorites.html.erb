@@ -1,0 +1,4 @@
+<div class='talks contain clearfix'>
+  <%= render @talks %>
+</div>
+<%= load_more @talks, user_favorites_path(@user, page: @talks.next_page) %>

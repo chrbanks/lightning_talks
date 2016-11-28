@@ -1,5 +1,10 @@
 class FavoritesController < ApplicationController  
   
+  def index
+    @user = User.find(params[:user_id])
+    @talks = @user.favorite_talks.page(params[:page])
+  end
+
   def create
     @talk = Talk.find(favorite_params[:talk_id])
     current_user.favorite!(@talk)

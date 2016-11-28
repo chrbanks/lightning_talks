@@ -1,0 +1,39 @@
+<%= currently_at 'Welcome' %>
+
+<header class='inset-header dark'>
+  <div class='container-fluid contain clearfix'>
+    <div>
+      <h1>Bacon ipsum dolor amet hamburger capicola</h1>
+      <p class='lead quiet'>Sirloin, ground round, fatback, lorem ipsum dolor sit amet</p>
+      <ul class='actions pin-bottomright'>
+        <li>
+          <%= link_to 'See all talks', meetings_path, class: 'btn btn-success' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div class='container-fluid contain space-bottom4'>
+
+  <nav class='tabs space-bottom4 dark'>
+    <%= tab_link 'Upcoming', 
+                 upcoming_talks_path, 
+                 class: 'active',
+                 data: { remote: true, tab: 'upcoming' } %>
+    <%= tab_link 'Recent', 
+                 recent_talks_path, 
+                 data: { remote: true, tab: 'recent' } %>
+    <%= tab_link 'Popular', 
+                 popular_talks_path, 
+                 data: { remote: true, tab: 'popular' } %>
+  </nav>
+
+  <div class='talks contain clearfix'>
+    <%= render @talks %>
+  </div>
+
+  <div class='pad4y center'>
+    <%= link_to 'See all talks', meetings_path, class: 'btn btn-lg btn-success' %>
+  </div>
+</div>
