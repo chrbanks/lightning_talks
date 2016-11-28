@@ -24,7 +24,7 @@
     <a href='https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet' class='small quiet pad0y' target='_blank'>Styling with markdown supported<i class='icon icon-new-window icon-sm'></i></a>
   </fieldset>
   <fieldset>
-    <%= f.label :tag_list %>
+    <%= f.label :tag_list, 'Tags (up to 5)' %>
     <%= f.text_field :tag_list, class: 'stretch tagsinput', 
                      value: f.object.tag_list.to_s %>
   </fieldset>
