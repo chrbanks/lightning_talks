@@ -24,5 +24,5 @@ module TalksHelper
   def favorite_icon(talk)
     color = current_user.favorite?(talk) ? 'danger' : 'quiet'
     content_tag :i, nil, class: "icon icon-heart icon-md #{color}"
-  end  
+  end
 end

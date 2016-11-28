@@ -18,6 +18,8 @@ gem 'okcomputer'
 gem 'faker'
 gem 'kaminari'
 gem 'acts_as_commentable'
+gem 'pygments.rb'
+gem 'redcarpet'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

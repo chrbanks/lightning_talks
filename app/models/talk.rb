@@ -13,6 +13,8 @@ class Talk < ApplicationRecord
   validates :meeting, presence: true
   validates :user, presence: true
 
+  scope :latest, -> { order(created_at: :desc) }
+  
   scope :upcoming, -> { joins(:meeting).where("meetings.date >= ?", Time.current.beginning_of_day) }
   scope :recent, -> { joins(:meeting).where("meetings.date < ?", Time.current.beginning_of_day) }
   scope :popular, -> { where('favorites_count >= 5') }

@@ -65,19 +65,16 @@
 
   <article class='fill-white pad4 round space-bottom4 clearfix col-sm-10 col-sm-offset-1'>
     <div class='pad2'>
-      <section class='prose space-bottom4'>
+      <section class='overview prose space-bottom'>
         <h4>Overview</h4>
-        <p>
-          Each handcrafted journal is made from <a href='#fakelink'>premium natural</a> raw leather. This buttery soft vegetable-tanned leather will <strong>darken</strong> over time and look even <em>better</em> as it ages. The more you use it, the better it looks. Each journal comes in a handy cotton pouch.
-        </p>
-        <p class='small quiet'>
-          *Please note: each piece of leather will have slight variations and markings, making each journal truly one of a kind.
-        </p>
-        <span class='fill-blue dark pad0 small round inline space-bottom0'>coding</span>
-        <span class='fill-blue dark pad0 small round inline space-bottom0'>magic</span>
-        <span class='fill-blue dark pad0 small round inline space-bottom0'>activerecord</span>
-        <span class='fill-blue dark pad0 small round inline space-bottom0'>devops</span>
-        <span class='fill-blue dark pad0 small round inline space-bottom0'>databases</span>
+        <%= markdown(@talk.overview) || @talk.description %>
+        <div class='pad1y'>
+          <span class='fill-blue dark pad0 small round inline space-bottom0'>coding</span>
+          <span class='fill-blue dark pad0 small round inline space-bottom0'>magic</span>
+          <span class='fill-blue dark pad0 small round inline space-bottom0'>activerecord</span>
+          <span class='fill-blue dark pad0 small round inline space-bottom0'>devops</span>
+          <span class='fill-blue dark pad0 small round inline space-bottom0'>databases</span>
+        </div>
       </section>
       <section class='pad0y'>
         <a id='comments'></a>

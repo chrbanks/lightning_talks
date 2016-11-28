@@ -6,7 +6,7 @@ class MeetingsController < ApplicationController
   end
 
   def show
-    @talks = Talk.where(meeting_id: params[:id]).order(id: :asc)
+    @talks = @meeting.talks
   end
 
   def new
