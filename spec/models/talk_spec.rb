@@ -15,6 +15,7 @@ describe Talk do
     it { is_expected.to respond_to :favorites_count }
     it { is_expected.to respond_to :favorites }
     it { is_expected.to respond_to :overview }
+    it { is_expected.to respond_to :tags }
   end
 
   describe 'validations' do    
