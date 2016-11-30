@@ -13,6 +13,7 @@
  *= require kabu
  *= require ladda-themeless.min
  *= require pace
+ *= require jquery.atwho
  *= require_tree .
  *= require_self
  */

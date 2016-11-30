@@ -1,5 +1,10 @@
 /* Global styles
 ------------------------------------------------------- */
+.prose .emoji {
+  margin: 0;
+  background: none;
+  display: inline;
+}
 
 .overview.prose {
   h1, h2 { padding-top: 0; }

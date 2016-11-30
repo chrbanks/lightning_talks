@@ -17,4 +17,5 @@
 //= require spin.min
 //= require ladda.min
 //= require pace
+//= require jquery.atwho
 //= require_tree .

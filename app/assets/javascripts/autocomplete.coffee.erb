@@ -1,0 +1,17 @@
+$(document).on 'turbolinks:load', ->
+  `var emojis`
+  emojis = <%= Emoji.all.map { |e| [e.image_filename, e.name] } %>
+  emojis = $.map(emojis, (emoji, i) ->
+    {
+      key: emoji[0]
+      name: emoji[1]
+    }
+  )
+  emoji_config = 
+    at: ':'
+    data: emojis
+    displayTpl: '<li>${name} <img src=\'https://assets-cdn.github.com/images/icons/emoji/${key}\'  height=\'20\' width=\'20\' /></li>'
+    insertTpl: ':${name}:'
+    delay: 400
+  $('.emojify').atwho emoji_config
+  return
