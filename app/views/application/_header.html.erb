@@ -10,10 +10,9 @@
   <div class='pull-right user-nav'>
     <ul id='authmenu' class='dropdown-menu' role='menu' aria-labelledby='dLabel'>
       <li><%= link_to 'Your profile', current_user %></li>
-      <li><a href='#fakelink'>Settings</a></li>
+      <li><%= link_to 'Settings', edit_user_path(current_user) %></li>
       <li class='divider'></li>
       <li><a href='#fakelink'>Send feedback</a></li>
-      <li><a href='#fakelink'>Sign out</a></li>
     </ul>
     <a href='#fakelink' class='quiet pad1y inline small strong'>
       <i class='icon icon-bullhorn pad0r'></i>Sign up to talk
