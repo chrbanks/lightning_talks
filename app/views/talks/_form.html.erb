@@ -31,7 +31,7 @@
   <fieldset>
     <%= f.label :meeting %>
     <%= f.collection_select(:meeting_id,
-                            Meeting.where("date > ?", Date.today),
+                            meetings(@talk),
                             :id, :title, selected: @talk.meeting.id) %>
   </fieldset>
   <div class='pad1y space-bottom4'>
