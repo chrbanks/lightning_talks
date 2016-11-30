@@ -25,4 +25,14 @@ module TalksHelper
     color = current_user.favorite?(talk) ? 'danger' : 'quiet'
     content_tag :i, nil, class: "icon icon-heart icon-md #{color}"
   end
+
+  def meetings(talk)
+    if current_user.admin?
+      Meeting.all.order(date: 'desc')
+    elsif talk.meeting.date > Date.today
+      Meeting.where("date > ?", Date.today).order(date: 'desc').to_set << talk.meeting
+    else
+      [talk.meeting]
+    end
+  end
 end
