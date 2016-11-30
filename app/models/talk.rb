@@ -8,8 +8,8 @@ class Talk < ApplicationRecord
 
   CATEGORIES = %w(agile developer_tools design front_end database learning news miscellaneous)
 
-  validates :title, presence: true
-  validates :description, presence: true
+  validates :title, presence: true, length: { maximum: 50 }
+  validates :description, length: { maximum: 100 }
   validates :category, inclusion: { in: CATEGORIES }
   validates :meeting, presence: true
   validates :user, presence: true

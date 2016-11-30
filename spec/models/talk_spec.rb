@@ -21,7 +21,8 @@ describe Talk do
   describe 'validations' do
     it { is_expected.to be_valid }
     it { is_expected.to validate_presence_of :title }
-    it { is_expected.to validate_presence_of :description }
+    it { is_expected.to validate_length_of(:title).is_at_most(50) }
+    it { is_expected.to validate_length_of(:description).is_at_most(100) }
     it { is_expected.to validate_inclusion_of(:category).in_array(
       %w(agile developer_tools design front_end database learning news miscellaneous)) }
     it { is_expected.to validate_presence_of :meeting }
