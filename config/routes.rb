@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
-
   root 'welcome#index'
-
-  namespace :admin do
-    root 'application#index'
-    resources :meetings do
-      resources :talks, only: [:new, :create, :edit, :update]
-    end
-  end
 
   resources :meetings do
     resources :talks, only: [:new, :create]

@@ -11,13 +11,10 @@
             <%= link_to 'Edit', edit_meeting_path(@meeting), class: 'btn btn-default' %>
           </li>
           <li>
-            <%= link_to 'Destroy', @meeting, 
-                                   method: :delete, 
+            <%= link_to 'Destroy', @meeting,
+                                   method: :delete,
                                    data: { confirm: 'Are you sure?' },
                                    class: 'btn btn-danger' %>
-          </li>
-          <li>
-            <%= link_to 'New Talk for User', new_admin_meeting_talk_path(@meeting), class: 'btn btn-primary' %>
           </li>
         <% end %>
         <li>

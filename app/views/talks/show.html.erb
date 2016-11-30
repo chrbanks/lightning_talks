@@ -14,7 +14,7 @@
       <div class='pad1x inline'>
         By
         <%= link_to @talk.user do %>
-          <%= avatar_for @talk.user, width: 24, class: 'img-rounded', 
+          <%= avatar_for @talk.user, width: 24, class: 'img-rounded',
                          style: 'margin: 0 5px' %><%= @talk.user.full_name %>
         <% end %>
         <span>
@@ -29,21 +29,16 @@
       <% if (DateTime.now < @talk.meeting.date && (signed_in? && current_user.id == @talk.user_id)) || current_user.admin? %>
         <li>
           <%= link_to 'Destroy', @talk,
-                                 method: :delete, 
-                                 data: { confirm: 'Are you sure?' }, 
+                                 method: :delete,
+                                 data: { confirm: 'Are you sure?' },
                                  class: 'btn btn-danger' %>
         </li>
       <% end %>
-      <% if current_user.admin? %>
-        <li>
-          <%= link_to 'Edit', edit_talk_path(@talk), class: 'btn btn-loud' %>
-        </li>
-      <% end %>
-      <% if signed_in? && current_user.id == @talk.user.id %>
+      <% if current_user.id == @talk.user.id || current_user.admin? %>
         <li>
           <%= link_to 'Edit', edit_talk_path(@talk), class: 'btn btn-primary' %>
         </li>
-      <% end %>      
+      <% end %>
       <li>
         <a href='#comments' class='btn btn-default'>
           <i class='icon icon-comment quiet pad0r'></i><span id='comment-count'><%= @comments.size %></span>
@@ -80,9 +75,9 @@
               <%= avatar_for current_user, width: 48, class: 'img-rounded' %>
             </a>
             <div class='media-body with-input'>
-              <%= f.text_area :comment, 
-                              class: 'stretch emojify space-bottom1', 
-                              placeholder: 'Leave a comment, be nice...', 
+              <%= f.text_area :comment,
+                              class: 'stretch emojify space-bottom1',
+                              placeholder: 'Leave a comment, be nice...',
                               required: true %>
               <%= f.submit 'Post comment', class: 'btn btn-primary' %>
             </div>

@@ -1,6 +1,6 @@
 class TalksController < ApplicationController
   before_action :set_user, only: [:index]
-  before_action :set_meeting, only: [:new, :create]
+  before_action :set_meeting, only: [:new]
   before_action :set_talk, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -13,10 +13,11 @@ class TalksController < ApplicationController
   end
 
   def new
-    @talk = @meeting.talks.new
+    @talk = @meeting.talks.new(user_id: current_user.id)
   end
 
   def create
+    @meeting = Meeting.find(params[:talk][:meeting_id])
     @talk = @meeting.talks.new(talk_params)
     if @talk.save
       redirect_to @talk, notice: 'Talk was successfully created.'
@@ -71,6 +72,5 @@ class TalksController < ApplicationController
     params.require(:talk)
           .permit(:meeting_id, :title, :user_id, :description, :category,
                   :overview, :tag_list)
-          .merge(user_id: current_user.id)
   end
 end

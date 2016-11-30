@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe RelationshipsController do
 
@@ -29,10 +29,10 @@ describe RelationshipsController do
 
     before { user.follow!(other_user) }
     let(:relationship) { user.active_relationships.find_by_followed_id(other_user) }
-    let(:params) do 
+    let(:params) do
       { id: relationship.id }
     end
-    
+
     it "should decrement the Relationship count" do
       expect do
         delete :destroy, xhr: true, params: params
