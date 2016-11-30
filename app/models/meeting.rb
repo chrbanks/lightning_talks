@@ -6,4 +6,8 @@ class Meeting < ApplicationRecord
   validates :title, presence: true
   validates :location, presence: true
   validates :user, presence: true
+
+  scope :upcoming, -> { where("date > ?", Time.now) }
+
+  scope :next, -> { where("date > ?", Time.now).order(date: 'asc').first }
 end
