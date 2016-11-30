@@ -15,15 +15,15 @@
         </p>
         <ul class='stats'>
           <li class='inline hidden-xs'>
-            <%= link_to user_talks_path(@user), 
-                        class: 'block pad2r text-default', 
+            <%= link_to user_talks_path(@user),
+                        class: 'block pad2r text-default',
                         remote: true do %>
               <strong class='block space-bottom0'><%= @user.talks.size %></strong>
               <small class='quiet'>Talks</small>
             <% end %>
           </li>
           <li class='inline'>
-            <%= link_to followers_user_path(@user), 
+            <%= link_to followers_user_path(@user),
                         class: 'block pad2x keyline-left text-default followers',
                         remote: true do %>
               <strong id='followers-count' class='block space-bottom0'><%= @user.followers.size %></strong>
@@ -57,10 +57,10 @@
       <% end %>
       <% if current_user?(@user) %>
         <li>
-          <a href='#fakelink' class='btn btn-default'>New talk</a>
+          <%= link_to 'New talk', new_talk_path, class: 'btn btn-default' %>
         </li>
         <li>
-          <%= link_to 'Edit profile', edit_user_path(@user), 
+          <%= link_to 'Edit profile', edit_user_path(@user),
                       class: 'btn btn-primary' %>
         </li>
       <% end %>
@@ -70,14 +70,14 @@
 
 <div class='container-fluid contain'>
   <nav class='space-bottom4 dark tabs'>
-    <%= tab_link 'Talks', 
-                 user_talks_path(@user), 
+    <%= tab_link 'Talks',
+                 user_talks_path(@user),
                  class: 'active',
                  data: { toggle: 'tab', remote: true, tab: 'talks' } %>
-    <%= tab_link 'Favorites', 
+    <%= tab_link 'Favorites',
                  user_favorites_path(@user),
                  data: { toggle: 'tab', remote: true, tab: 'favorites' } %>
-    <%= tab_link 'Activity', 
+    <%= tab_link 'Activity',
                  '#fakelink',
                  data: { toggle: 'tab', remote: true, tab: 'activity' } %>
     <%= tab_link 'Followers',
