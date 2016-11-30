@@ -1,7 +1,11 @@
-<%= form_for([:admin, @user]) do |f| %>
+<%= form_for @user, html: { class: 'pad4x dark' } do |f| %>
 
   <%= content_tag :small, @user.errors.full_messages_for(:base).join(', '), class: 'error-message space-bottom' if @user.errors.include?(:base) %>
 
+  <fieldset>
+    <%= f.label :username %>
+    <%= f.text_field :username, class: 'stretch', disabled: true %>
+  </fieldset>
   <fieldset>
     <%= f.label :first_name %>
     <%= f.text_field :first_name, class: 'stretch' %>
@@ -11,12 +15,14 @@
     <%= f.text_field :last_name, class: 'stretch' %>
   </fieldset>
   <fieldset>
-    <%= f.label :username %>
-    <%= f.text_field :username, class: 'stretch' %>
-  </fieldset>
-  <fieldset>
     <%= f.label :email %>
     <%= f.text_field :email, class: 'stretch' %>
   </fieldset>
-  <%= f.submit nil, class: 'btn btn-primary space-bottom' %>
+  <fieldset class='gravatar_edit'>
+    <%= avatar_for @user %>
+    <a href="http://gravatar.com/emails" target="_blank">change</a>
+  </fieldset>
+  <div class='pad1y space-bottom4'>  
+    <%= f.submit 'Save Changes', class: 'btn btn-primary space-bottom' %>
+  </div>
 <% end %>

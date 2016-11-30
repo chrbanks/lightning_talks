@@ -48,9 +48,18 @@
       </div>
     </div>
     <ul class='actions pin-bottomright'>
+      <li>
+        <a href='#fakelink' class='btn btn-default'>New talk</a>
+      </li>
       <% if signed_in? %>
         <li>
           <%= render 'follow_form' %>
+        </li>
+      <% end %>
+      <% if current_user?(@user) %>
+        <li>
+          <%= link_to 'Edit profile', edit_user_path(@user), 
+                      class: 'btn btn-primary' %>
         </li>
       <% end %>
     </ul>

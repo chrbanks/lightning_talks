@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'application#index'
-    resources :users
     resources :meetings do
       resources :talks, only: [:new, :create, :edit, :update]
     end
@@ -21,7 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:index, :show] do
+  resources :users do
     resources :talks, only: [:index]
     resources :favorites, only: [:index]
     member do
