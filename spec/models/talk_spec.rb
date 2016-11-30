@@ -67,8 +67,8 @@ describe Talk do
   describe '.upcoming' do
     let(:talk) { create :talk, meeting: meeting }
 
-    context 'when talk occurs today' do
-      let(:meeting) { create :meeting, date: Date.today }
+    context 'when talk occurs later today' do
+      let(:meeting) { create :meeting, date: Time.now + 1.hour }
       it 'includes talk' do
         expect(Talk.upcoming).to include talk
       end
@@ -78,6 +78,13 @@ describe Talk do
       let(:meeting) { create :meeting, date: Date.tomorrow }
       it 'includes talk' do
         expect(Talk.upcoming).to include talk
+      end
+    end
+
+    context 'when talk recently ended' do
+      let(:meeting) { create :meeting, date: Time.now - 30.minutes }
+      it 'excludes talk' do
+        expect(Talk.upcoming).to_not include talk
       end
     end
 
@@ -92,8 +99,8 @@ describe Talk do
   describe '.recent' do
     let(:talk) { create :talk, meeting: meeting }
 
-    context 'when talk occurs today' do
-      let(:meeting) { create :meeting, date: Date.today }
+    context 'when talk occurs later today' do
+      let(:meeting) { create :meeting, date: Time.now + 1.hour }
       it 'excludes talk' do
         expect(Talk.recent).to_not include talk
       end
@@ -103,6 +110,13 @@ describe Talk do
       let(:meeting) { create :meeting, date: Date.tomorrow }
       it 'excludes talk' do
         expect(Talk.recent).to_not include talk
+      end
+    end
+
+    context 'when talk occurs earlier today' do
+      let(:meeting) { create :meeting, date: Time.now - 30.minutes }
+      it 'includes talk' do
+        expect(Talk.recent).to include talk
       end
     end
 

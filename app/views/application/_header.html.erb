@@ -14,9 +14,9 @@
       <li class='divider'></li>
       <li><a href='#fakelink'>Send feedback</a></li>
     </ul>
-    <a href='#fakelink' class='quiet pad1y inline small strong'>
+    <%= link_to new_talk_path, class: 'quiet pad1y inline small strong' do %>
       <i class='icon icon-bullhorn pad0r'></i>Sign up to talk
-    </a>
+    <% end %>
     <a href='#fakelink' class='btn btn-default'>
       <i class='icon icon-bell quiet'></i>
     </a>

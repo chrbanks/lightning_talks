@@ -30,7 +30,7 @@ module TalksHelper
     if current_user.admin?
       Meeting.all.order(date: 'desc')
     elsif talk.meeting.date > Date.today
-      Meeting.where("date > ?", Date.today).order(date: 'desc').to_set << talk.meeting
+      Meeting.upcoming.order(date: 'desc').to_set << talk.meeting
     else
       [talk.meeting]
     end

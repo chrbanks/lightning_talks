@@ -16,8 +16,8 @@ class Talk < ApplicationRecord
 
   scope :latest, -> { order(created_at: :desc) }
 
-  scope :upcoming, -> { joins(:meeting).where("meetings.date >= ?", Time.current.beginning_of_day) }
-  scope :recent, -> { joins(:meeting).where("meetings.date < ?", Time.current.beginning_of_day) }
+  scope :upcoming, -> { joins(:meeting).where("meetings.date >= ?", Time.now) }
+  scope :recent, -> { joins(:meeting).where("meetings.date < ?", Time.now) }
   scope :popular, -> { where('favorites_count >= 5') }
 
   def next

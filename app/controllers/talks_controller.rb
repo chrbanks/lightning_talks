@@ -60,7 +60,7 @@ class TalksController < ApplicationController
   end
 
   def set_meeting
-    @meeting = Meeting.find(params[:meeting_id])
+    @meeting = params[:meeting_id] ? Meeting.find(params[:meeting_id]) : Meeting.next
   end
 
   def set_talk
@@ -69,7 +69,7 @@ class TalksController < ApplicationController
 
   def talk_params
     params.require(:talk)
-          .permit(:meeting_id, :title, :user_id, :description, :category, 
+          .permit(:meeting_id, :title, :user_id, :description, :category,
                   :overview, :tag_list)
           .merge(user_id: current_user.id)
   end
