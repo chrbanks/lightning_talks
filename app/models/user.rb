@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
   validates :username, presence: true
+  validates :bio, length: { maximum: 65 }
 
   before_create :set_admin, :get_info
 

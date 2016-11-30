@@ -10,7 +10,9 @@
         <h1>
           <%= @user.full_name %><%= speaker_badge(@user) %>
         </h1>
-        <p class='lead quiet'>Product designer at Bluth Company</p>
+        <p class='lead quiet'>
+          <%= @user.bio || "I haven't changed my bio yet :)" %>
+        </p>
         <ul class='stats'>
           <li class='inline hidden-xs'>
             <%= link_to user_talks_path(@user), 
