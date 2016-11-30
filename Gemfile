@@ -19,10 +19,12 @@ gem 'faker'
 gem 'kaminari'
 gem 'acts_as_commentable'
 gem 'acts-as-taggable-on'
+gem 'pygments.rb'
 gem 'html-pipeline'
 gem 'github-markdown'
 gem 'html-pipeline-rouge_filter'
 gem 'gemoji'
+gem 'jquery-atwho-rails'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
