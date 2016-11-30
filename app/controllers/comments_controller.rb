@@ -12,10 +12,15 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @talk.comments.new(comment_params)
-    if @comment.save
-      redirect_to @talk
-    else
-      render 'talks/show'
+        
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @talk }
+        format.js
+      else
+        format.html { render 'talks/show' }
+        format.js
+      end
     end
   end
 

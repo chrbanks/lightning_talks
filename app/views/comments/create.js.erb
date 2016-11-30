@@ -1,0 +1,3 @@
+$("#new_comment").before("<%=j render @comment %>")
+$("#new_comment textarea").val('')
+$("#comment-count").html('<%= @talk.comments.size %>')
