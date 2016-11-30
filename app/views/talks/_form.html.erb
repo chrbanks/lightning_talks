@@ -1,6 +1,6 @@
 <%= form_for([@meeting, @talk], html: { class: 'pad4x dark' }) do |f| %>
   <% if @talk.errors.include?(:base) %>
-    <%= content_tag :small, @talk.errors.full_messages_for(:base).join(', '), 
+    <%= content_tag :small, @talk.errors.full_messages_for(:base).join(', '),
                     class: 'error-message space-bottom' %>
   <% end %>
   <fieldset>
@@ -14,7 +14,7 @@
   <fieldset>
     <%= f.label :category %>
     <div class='input-group col-xs-12'>
-      <%= f.select :category, [['Mobile', 'mobile'], ['Developer Tools', 'developer_tools'], ['Design', 'design'], ['Front-end', 'front_end'], ['Database', 'database'], ['Learning', 'learning'], ['News', 'news']], {}, { class: 'stretch' } %>
+      <%= f.select :category, [['Agile', 'agile'], ['Developer Tools', 'developer_tools'], ['Design', 'design'], ['Front-end', 'front_end'], ['Database', 'database'], ['Learning', 'learning'], ['News', 'news'], ['Miscellaneous', 'miscellaneous']], {}, { class: 'stretch' } %>
       <i class='icon icon-chevron-down'></i>
     </div>
   </fieldset>
@@ -25,13 +25,13 @@
   </fieldset>
   <fieldset>
     <%= f.label :tag_list, 'Tags (up to 5)' %>
-    <%= f.text_field :tag_list, class: 'stretch tagsinput', 
+    <%= f.text_field :tag_list, class: 'stretch tagsinput',
                      value: f.object.tag_list.to_s %>
   </fieldset>
   <fieldset>
     <%= f.label :meeting %>
-    <%= f.collection_select(:meeting_id, 
-                            Meeting.where("date > ?", Date.today), 
+    <%= f.collection_select(:meeting_id,
+                            Meeting.where("date > ?", Date.today),
                             :id, :title, selected: @talk.meeting.id) %>
   </fieldset>
   <div class='pad1y space-bottom4'>

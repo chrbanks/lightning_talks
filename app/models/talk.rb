@@ -6,8 +6,8 @@ class Talk < ApplicationRecord
   acts_as_commentable
   acts_as_taggable
 
-  CATEGORIES = %w(mobile developer_tools design front_end database learning news)
-  
+  CATEGORIES = %w(agile developer_tools design front_end database learning news miscellaneous)
+
   validates :title, presence: true
   validates :description, presence: true
   validates :category, inclusion: { in: CATEGORIES }
@@ -15,7 +15,7 @@ class Talk < ApplicationRecord
   validates :user, presence: true
 
   scope :latest, -> { order(created_at: :desc) }
-  
+
   scope :upcoming, -> { joins(:meeting).where("meetings.date >= ?", Time.current.beginning_of_day) }
   scope :recent, -> { joins(:meeting).where("meetings.date < ?", Time.current.beginning_of_day) }
   scope :popular, -> { where('favorites_count >= 5') }

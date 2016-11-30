@@ -18,12 +18,12 @@ describe Talk do
     it { is_expected.to respond_to :tags }
   end
 
-  describe 'validations' do    
+  describe 'validations' do
     it { is_expected.to be_valid }
     it { is_expected.to validate_presence_of :title }
     it { is_expected.to validate_presence_of :description }
     it { is_expected.to validate_inclusion_of(:category).in_array(
-      %w(mobile developer_tools design front_end database learning news)) }
+      %w(agile developer_tools design front_end database learning news miscellaneous)) }
     it { is_expected.to validate_presence_of :meeting }
     it { is_expected.to validate_presence_of :user }
   end

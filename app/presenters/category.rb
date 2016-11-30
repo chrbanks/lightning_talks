@@ -8,7 +8,7 @@ class Category
 
   def color
     case @name
-    when 'mobile'
+    when 'agile'
       'fill-green'
     when 'developer_tools'
       'fill-turquoise'
@@ -22,6 +22,8 @@ class Category
       'fill-yellow'
     when 'news'
       'fill-orange'
+    when 'miscellaneous'
+      'fill-light-blue'
     end
   end
 
