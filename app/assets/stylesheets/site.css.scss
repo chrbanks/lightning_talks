@@ -134,7 +134,10 @@ textarea, input[type=password], input[type=text], input[type=email], input[type=
   bottom: -55px;
   right: 0;
 
-  li { display: inline; }
+  li { 
+    display: inline-block;
+    vertical-align: top;
+  }
   .icon { font-size: 14px; }
 }
 
