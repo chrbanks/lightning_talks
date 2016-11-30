@@ -23,6 +23,7 @@ describe User do
   describe 'validations' do
     it { is_expected.to be_valid }
     it { is_expected.to validate_presence_of :username }
+    it { is_expected.to validate_length_of(:bio).is_at_most(150) }
   end
 
   describe 'favorite!' do

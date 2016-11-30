@@ -1,9 +1,12 @@
 /* Global styles
 ------------------------------------------------------- */
+.dark .error-message { background: rgba(255, 255, 255, 0.1); }
+
 .prose .emoji {
   margin: 0;
   background: none;
   display: inline;
+  vertical-align: sub;
 }
 
 .overview.prose {

@@ -6,17 +6,21 @@
     <%= f.label :username %>
     <%= f.text_field :username, class: 'stretch', disabled: true %>
   </fieldset>
-  <fieldset>
+  <fieldset class='col-sm-6 pad1r'>
     <%= f.label :first_name %>
     <%= f.text_field :first_name, class: 'stretch' %>
   </fieldset>
-  <fieldset>
+  <fieldset class='col-sm-6 pad1l'>
     <%= f.label :last_name %>
     <%= f.text_field :last_name, class: 'stretch' %>
   </fieldset>
   <fieldset>
     <%= f.label :email %>
     <%= f.text_field :email, class: 'stretch' %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :bio, 'Short bio' %>
+    <%= f.text_field :bio, class: 'stretch' %>
   </fieldset>
   <fieldset class='gravatar_edit'>
     <%= avatar_for @user %>
