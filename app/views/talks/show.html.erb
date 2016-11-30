@@ -46,7 +46,7 @@
       <% end %>      
       <li>
         <a href='#comments' class='btn btn-default'>
-          <i class='icon icon-comment quiet pad0r'></i><%= @comments.size %>
+          <i class='icon icon-comment quiet pad0r'></i><span id='comment-count'><%= @comments.size %></span>
         </a>
       </li>
       <li>
@@ -74,7 +74,7 @@
         <a id='comments'></a>
         <h4><%= pluralize @comments.size, 'comment' %></h4>
         <%= render @comments %>
-        <%= form_for [@talk, @comment] do |f| %>
+        <%= form_for [@talk, @comment], remote: true do |f| %>
           <div class='media pad0y'>
             <a class='media-left pad1r' href='#fakelink'>
               <%= avatar_for current_user, width: 48, class: 'img-rounded' %>
