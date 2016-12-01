@@ -23,7 +23,7 @@
                          remote: true,
                          tab: 'everyone' } do %>
       Everyone
-      <span class="pull-right fill-darken1 img-circle center small pad0x space0l"><%= @users.size %></span>
+      <span class="pull-right fill-darken1 img-circle center small pad0x space0l"><%= @users.total_count %></span>
     <% end %>
     <%= tab_link 'Speakers',
                  speakers_path,
@@ -35,7 +35,9 @@
     <% end %>
   </nav>
 
-  <ul class="fill-white pad3 users round space-bottom4">
-    <%= render partial: 'user', collection: @users %>
+  <ul class='fill-white pad3 users round'>
+    <%= render @users %>
   </ul>
+
+  <%= paginate @users %>  
 </div>
