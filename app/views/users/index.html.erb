@@ -21,12 +21,18 @@
                  class: 'active',
                  data: { toggle: 'tab',
                          remote: true,
-                         tab: 'everyone' } %>
+                         tab: 'everyone' } do %>
+      Everyone
+      <span class="pull-right fill-darken1 img-circle center small pad0x space0l"><%= @users.size %></span>
+    <% end %>
     <%= tab_link 'Speakers',
                  speakers_path,
                  data: { toggle: 'tab',
                          remote: true,
-                         tab: 'speakers' } %>
+                         tab: 'speakers' } do %>
+      Speakers
+      <span class="pull-right fill-darken1 img-circle center small pad0x space0l"><%= User.speaker.count %></span>
+    <% end %>
   </nav>
 
   <ul class="fill-white pad3 users round space-bottom4">
