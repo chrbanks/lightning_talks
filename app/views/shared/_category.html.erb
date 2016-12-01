@@ -1,3 +1,3 @@
-<a href='#fakelink' class='small strong quiet category'>
+<%= link_to category_path(category.name), class: 'small strong quiet category' do %>
   <%= content_tag :span, nil, class: "#{category.color} img-circle pad0 inline" %><%= category.name.humanize %>
-</a>
+<% end %>
