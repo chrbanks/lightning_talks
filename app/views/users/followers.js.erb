@@ -1,3 +1,9 @@
-$('.tab-content').html("<%=j render 'followers', collection: @users %>")
-$('.tabs .tab-link').removeClass('active')
-$('.tabs [data-tab="followers"]').addClass('active')
+<% if params[:page] %>
+  $('.tab-content .users').append("<%=j render @users %>")
+  $('.load-more').replaceWith("<%=j load_more @users, followers_user_path(@user, page: @users.next_page) %>")
+<% else %>
+  $('.tab-content').html("<%=j render 'followers', collection: @users %>")
+  $('.tabs .tab-link').removeClass('active')
+  $('.tabs [data-tab="followers"]').addClass('active')
+<% end %>
+Ladda.bind('.ladda-button')

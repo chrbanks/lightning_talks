@@ -23,11 +23,11 @@ class UsersController < ApplicationController
   end
 
   def followers
-    @users ||= @user.followers
+    @users ||= @user.followers.page(params[:page])
   end
 
   def following
-    @users ||= @user.followed_users
+    @users ||= @user.followed_users.page(params[:page])
   end
 
   def speakers
