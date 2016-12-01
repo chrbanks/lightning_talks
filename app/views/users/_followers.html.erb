@@ -1,3 +1,5 @@
-<ul class='followers fill-white pad3 users round space-bottom4'>
+<ul class='followers fill-white pad3 users round'>
   <%= render @users %>
 </ul>
+
+<%= load_more @users, followers_user_path(@user, page: @users.next_page) %>
