@@ -3,8 +3,8 @@
 <header class='inset-header dark'>
   <div class='container-fluid contain clearfix'>
     <div>
-      <h1>Bacon ipsum dolor amet hamburger capicola</h1>
-      <p class='lead quiet'>Sirloin, ground round, fatback, lorem ipsum dolor sit amet</p>
+      <h1>Lightning Talks</h1>
+      <p class='lead quiet'>Share & learn</p>
       <ul class='actions pin-bottomright'>
         <li>
           <%= link_to 'See all talks', meetings_path, class: 'btn btn-success' %>
@@ -17,15 +17,15 @@
 <div class='container-fluid contain space-bottom4'>
 
   <nav class='tabs space-bottom4 dark'>
-    <%= tab_link 'Upcoming', 
-                 upcoming_talks_path, 
+    <%= tab_link 'Upcoming',
+                 upcoming_talks_path,
                  class: 'active',
                  data: { remote: true, tab: 'upcoming' } %>
-    <%= tab_link 'Recent', 
-                 recent_talks_path, 
+    <%= tab_link 'Recent',
+                 recent_talks_path,
                  data: { remote: true, tab: 'recent' } %>
-    <%= tab_link 'Popular', 
-                 popular_talks_path, 
+    <%= tab_link 'Popular',
+                 popular_talks_path,
                  data: { remote: true, tab: 'popular' } %>
   </nav>
 
