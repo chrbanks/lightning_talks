@@ -1,4 +1,10 @@
-<div class='talks contain clearfix'>
-  <%= render @talks %>
-</div>
-<%= load_more @talks, user_talks_path(@user, page: @talks.next_page) %>
+<% if @talks.any? %>
+  <div class='talks contain clearfix'>
+    <%= render @talks %>
+  </div>
+  <%= load_more @talks, user_talks_path(@user, page: @talks.next_page) %>
+<% else %>
+  <div class='fill-white pad3 round'>
+    I haven't given a talk yet <%= Emoji.find_by_alias('sweat_smile').raw %>
+  </div>
+<% end %>

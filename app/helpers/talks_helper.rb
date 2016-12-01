@@ -35,8 +35,4 @@ module TalksHelper
       [talk.meeting]
     end
   end
-
-  def users(talk)
-    User.all.order(last_name: 'asc')
-  end
 end

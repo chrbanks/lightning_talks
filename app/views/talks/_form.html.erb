@@ -37,7 +37,7 @@
   <% if current_user.admin? %>
     <fieldset>
       <%= f.label :user %>
-      <%= f.collection_select :user_id, users(@talk), :id, :full_name, selected: @talk.user_id,  prompt: true %>
+      <%= f.collection_select :user_id, User.order(last_name: 'asc'), :id, :full_name, selected: @talk.user_id,  prompt: true %>
     </fieldset>
   <% end %>
   <div class='pad1y space-bottom4'>

@@ -1,4 +1,10 @@
-<div class='talks contain clearfix'>
-  <%= render @talks %>
-</div>
-<%= load_more @talks, user_favorites_path(@user, page: @talks.next_page) %>
+<% if @talks.any? %>
+  <div class='talks contain clearfix'>
+    <%= render @talks %>
+  </div>
+  <%= load_more @talks, user_favorites_path(@user, page: @talks.next_page) %>
+<% else %>
+  <div class='fill-white pad3 round'>
+    I'm not easily impressed <%= Emoji.find_by_alias('smirk_cat').raw %>
+  </div>
+<% end %>
