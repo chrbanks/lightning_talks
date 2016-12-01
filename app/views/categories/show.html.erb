@@ -1,0 +1,20 @@
+<%= currently_at 'Category' %>
+
+<header class='inset-header dark'>
+  <div class='container-fluid contain clearfix'>
+    <div>
+      <h1>Talks in <%= @category %>:</h1>
+      <ul class='actions pin-bottomright'>
+        <li>
+          <%= link_to 'See all categories', categories_path, class: 'btn btn-success' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div class='container-fluid contain pad4y'>
+  <div class='contain clearfix talks'>
+    <%= render @talks %>
+  </div>
+</div>

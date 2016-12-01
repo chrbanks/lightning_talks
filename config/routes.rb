@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   resources :tags, only: [:index, :show]
 
+  resources :categories, only: [:show]
+
   get  'signin' => 'sessions#new'
   post 'saml/consume' => 'sessions#create'
   post 'sessions/create' => 'sessions#create'
