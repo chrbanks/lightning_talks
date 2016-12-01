@@ -46,7 +46,7 @@ class TalksController < ApplicationController
   end
 
   def recent
-    @talks = Talk.recent.page(1)
+    @talks = Talk.includes(:meeting, :user).recent.page(1)
   end
 
   def popular
@@ -64,7 +64,7 @@ class TalksController < ApplicationController
   end
 
   def set_talk
-    @talk = Talk.find(params[:id])
+    @talk = Talk.includes(:tags).find(params[:id])
   end
 
   def talk_params

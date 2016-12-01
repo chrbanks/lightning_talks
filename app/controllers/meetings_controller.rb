@@ -6,7 +6,7 @@ class MeetingsController < ApplicationController
   end
 
   def show
-    @talks = @meeting.talks
+    @talks = @meeting.talks.includes(:user)
   end
 
   def new

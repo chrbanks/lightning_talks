@@ -6,7 +6,7 @@
     <p class='strong quiet space-bottom'>
       <%= pluralize meeting.talks.count, 'talk' %>
     </p>
-    <% meeting.talks.first(10).each do |talk| %>
+    <% meeting.talks.includes(:user).first(10).each do |talk| %>
       <%= avatar_for talk.user, 
                      class: 'speaker space-bottom1 inline img-circle' %>
     <% end %>
