@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index
-    @users = User.all.order(:email)
+    @users = User.order(:email).page(params[:page])
   end
 
   def show
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def speakers
-    @users ||= User.speaker.order(:email)
+    @users ||= User.speaker.order(:email).page(params[:page])
   end
 
   private

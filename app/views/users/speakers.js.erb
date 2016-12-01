@@ -1,3 +1,4 @@
-$('.users').html("<%=j render partial: 'user', collection: @users %>");
+$('.users').html("<%=j render @users %>");
+$('.pagination').replaceWith("<%=j paginate @users, params: { controller: 'users', action: 'speakers' }, remote: true %>");
 $('.tabs .tab-link').removeClass('active');
 $('.tabs [data-tab="speakers"]').addClass('active');
