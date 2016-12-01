@@ -1,0 +1,13 @@
+development:
+  region: '********'
+  bucket: '********'
+  host_name: '********'
+  access_key_id: '********'
+  secret_access_key: '********'
+
+test:
+  region: '********'
+  bucket: '********'
+  host_name: '********'
+  access_key_id: '********'
+  secret_access_key: '********'
