@@ -4,7 +4,11 @@
   <div class='container-fluid contain clearfix'>
     <div>
       <h1><%= @meeting.title %></h1>
-      <p class='lead quiet'><%= pluralize @meeting.talks.size, 'talk' %></p>
+      <p class='lead quiet'>
+        <%= pluralize @meeting.talks.size, 'talk' %> &bull;
+        <%= @meeting.location %> &bull;
+        <%= @meeting.date.strftime('%B %e, %Y @ %l:%M %p %Z') %>
+      </p>
       <ul class='actions pin-bottomright'>
         <% if current_user.admin? %>
           <li>
