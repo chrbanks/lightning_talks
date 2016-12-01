@@ -48,9 +48,7 @@
         <%= render 'favorite_form' %>
       </li>
       <li>
-        <%= link_to @talk.attachment, class: 'btn btn-success' do %>
-          <i class='icon icon-download-alt'></i>
-        <% end %>
+        <%= attachment_link @talk.attachment %>
       </li>
     </ul>
   </div>

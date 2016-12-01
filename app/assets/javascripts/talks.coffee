@@ -40,7 +40,6 @@ $(document).on 'turbolinks:load', ->
     clean: ->
       $mediaBody = @form.find('.attachment-section')
       $mediaBody.find('.error-message').remove()
-      $mediaBody.find('.file-info').remove()
       @progressBar.hide()
       @progressBar.reset()
       @submitButton.prop 'disabled', false
@@ -61,9 +60,8 @@ $(document).on 'turbolinks:load', ->
       @progressBar.hide()
       @progressBar.reset()
 
-      messageText = "#{fileName} #{(fileSize/1024).toFixed(2)} KB"
-      $message = $('<p></p>').addClass('file-info small pad0y')
-                             .text(messageText)
+      messageText = "#{fileName} (#{(fileSize/1024).toFixed(2)} KB)"
+      $message = @form.find('.file-info').text messageText
       @form.find('.attachment-section').append $message
 
       $input = $('<input />',
@@ -90,12 +88,12 @@ $(document).on 'turbolinks:load', ->
       paramName:         'file'
       dataType:          'XML'
       disableValidation: false
-      acceptFileTypes:   /(\.|\/)(pdf|ppt|key)$/i
+      acceptFileTypes:   /(\.|\/)(pdf|ppt?x|doc?x|key)$/i
       maxFileSize:       5242880 # 5 MB
       messages:
         maxFileSize:     'File is too large (should be < 5MB)'
         acceptFileTypes: 'File type not allowed (only .pdf, .ppt, .key)'
-      dropZone:          $('#attachment-section')
+      dropZone:          $('.attachment-section')
 
     ).on('fileuploadstart', (e, data) ->
       form.clean()
