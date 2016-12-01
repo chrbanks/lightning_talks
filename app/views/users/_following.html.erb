@@ -1,5 +1,5 @@
 <ul class='following fill-white pad3 users round'>
-  <%= render @users %>
+  <%= render(@users) || "No new friends #{Emoji.find_by_alias('shit').raw}" %>
 </ul>
 
 <%= load_more @users, following_user_path(@user, page: @users.next_page) %>

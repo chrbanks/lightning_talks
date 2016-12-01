@@ -1,5 +1,5 @@
 <ul class='followers fill-white pad3 users round'>
-  <%= render @users %>
+  <%= render(@users) || "No secret admirers #{Emoji.find_by_alias('broken_heart').raw}" %>
 </ul>
 
 <%= load_more @users, followers_user_path(@user, page: @users.next_page) %>
