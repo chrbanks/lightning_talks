@@ -1,0 +1,21 @@
+<%= currently_at 'Tags' %>
+
+<header class='inset-header dark'>
+  <div class='container-fluid contain clearfix'>
+    <div>
+      <h1>Talks tagged with:</h1>
+      <div class='pad1y'><%= render @tag %></div>
+      <ul class='actions pin-bottomright'>
+        <li>
+          <%= link_to 'See all tags', tags_path, class: 'btn btn-success' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div class='container-fluid contain pad4y'>
+  <div class='contain clearfix talks'>
+    <%= render @talks %>
+  </div>
+</div>

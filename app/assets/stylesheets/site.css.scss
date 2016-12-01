@@ -1,5 +1,10 @@
 /* Global styles
 ------------------------------------------------------- */
+.dark .tag { 
+  background: rgba(255, 255, 255, 0.25); 
+  font-family: 'Open Sans Semibold', sans-serif; 
+}
+
 .dark .error-message { background: rgba(255, 255, 255, 0.1); }
 
 .prose .emoji {

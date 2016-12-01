@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :favorites
 
+  resources :tags, only: [:index, :show]
+
   get  'signin' => 'sessions#new'
   post 'saml/consume' => 'sessions#create'
   post 'sessions/create' => 'sessions#create'
