@@ -2,7 +2,7 @@
 
 <header class='inset-header dark profile'>
   <div class='container-fluid contain clearfix'>
-    <div class='media contain member-profile'>
+    <div class='media contain member-profile' id="<%= dom_id(@user) %>">
       <%= link_to @user, class: 'media-left pad1r' do %>
         <%= avatar_for @user, class: 'img-rounded', width: 130 %>
       <% end %>
@@ -32,7 +32,7 @@
           </li>
           <li class='inline'>
             <%= link_to following_user_path(@user),
-                        class: 'block pad2x keyline-left text-default',
+                        class: 'block pad2x keyline-left text-default following',
                         remote: true do %>
               <strong class='block space-bottom0'><%= @user.followed_users.size %></strong>
               <small class='quiet'>Following</small>
@@ -52,7 +52,9 @@
     <ul class='actions pin-bottomright'>
       <% if signed_in? %>
         <li>
-          <%= render 'follow_form' %>
+          <div id="follow_form">
+            <%= render partial: 'follow_form', locals: { user: @user } %>
+          </div>
         </li>
       <% end %>
       <% if current_user?(@user) %>
