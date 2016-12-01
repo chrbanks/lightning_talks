@@ -1,4 +1,11 @@
-<%= form_for([@meeting, @talk], html: { class: 'pad4x dark' }) do |f| %>
+<%= form_for([@meeting, @talk], html: {
+  class: 'edit-talk pad4x dark',
+  data: {
+    'form-data' => @s3_direct_post.fields,
+    'url' => @s3_direct_post.url,
+    'host' => URI.parse(@s3_direct_post.url).host
+  }
+  }) do |f| %>
   <% if @talk.errors.include?(:base) %>
     <%= content_tag :small, @talk.errors.full_messages_for(:base).join(', '),
                     class: 'error-message space-bottom' %>
@@ -40,7 +47,31 @@
       <%= f.collection_select :user_id, User.order(last_name: 'asc'), :id, :full_name, selected: @talk.user_id,  prompt: true %>
     </fieldset>
   <% end %>
+
+  <fieldset class='attachment-section'>
+    <%= f.file_field :attachment, class: 'hidden' %>
+    <button id='upload-slides' class='btn btn-default' type='button'>
+      Upload slides
+    </button>
+    <div class='clearfix'>
+      <p class='small quiet pad0y'>You can also drag and drop the file here</p>
+
+      <div class='progress-bar hidden'>
+        <div class='progress progress-success' style='width: 0%;'></div>
+      </div>
+    </div>
+  </fieldset>
+
   <div class='pad1y space-bottom4'>
     <%= f.submit nil, class: 'btn btn-primary btn-wide' %>
   </div>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag 'jquery.x.fileupload' %>
+  <script>
+    $(function () {
+      onLoadEditTalkPage();
+    });
+  </script>
 <% end %>
