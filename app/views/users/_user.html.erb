@@ -1,4 +1,6 @@
-<%= content_tag :li, id: "user_#{user.id}", class: "user pad2y keyline-bottom" do %>
+<%= content_tag :li, id: "user_#{user.id}", 
+                class: user_iteration.last? ? 
+                  "user pad2y" : "user pad2y keyline-bottom" do %>
   <div class="media contain">
     <%= link_to user_path(user), class: 'media-left pad1r' do %>
       <%= avatar_for user, class: 'img-rounded', width: '85', alt: 'Hero' %>
