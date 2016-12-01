@@ -6,16 +6,16 @@ class RelationshipsController < ApplicationController
     current_user.follow!(@user)
     respond_to do |format|
       format.html { redirect_to @user }
-      format.js
+      format.js { render content_type: 'text/plain' }
     end
   end
 
   def destroy
-    @user = Relationship.find(params[:id]).followed
+    @user = Relationship.includes(:followed).find(params[:id]).followed
     current_user.unfollow!(@user)
     respond_to do |format|
       format.html { redirect_to @user }
-      format.js
+      format.js { render content_type: 'text/plain' }
     end
   end
 end

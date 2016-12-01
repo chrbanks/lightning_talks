@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get :speakers, to: 'users#speakers'
+
   resources :relationships, only: [:create, :destroy]
   resources :favorites
 

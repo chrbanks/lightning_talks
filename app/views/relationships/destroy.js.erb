@@ -1,2 +1,1 @@
-$("#follow_form").html("<%=j render 'users/follow' %>")
-$("#followers-count").html('<%= @user.followers.size %>')
+<%= render partial: 'users/follow', locals: { user: @user } %>

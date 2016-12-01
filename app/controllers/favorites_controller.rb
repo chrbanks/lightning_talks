@@ -15,7 +15,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @talk = Favorite.find(params[:id]).talk
+    @talk = Favorite.includes(:talk).find(params[:id]).talk
     current_user.unfavorite!(@talk)
     respond_to do |format|
       format.js
