@@ -2,9 +2,10 @@
                 class: user_iteration.last? ? 
                   'user pad2y' : 'user pad2y keyline-bottom' do %>
   <div class='media contain'>
-    <%= link_to user_path(user), class: 'media-left pad1r' do %>
+    <%= link_to '', user_path(user), class: 'permalink pin-topleft block' %>
+    <div class='media-left pad1r'>
       <%= avatar_for user, class: 'img-rounded', width: '85', alt: 'Hero' %>
-    <% end %>
+    </div>
     <div class='media-body pad0l'>
       <h4><%= user.full_name %></h4>
       <p class='hidden-xs'><%= user.bio %></p>
