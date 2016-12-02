@@ -1,3 +1,4 @@
 $("#new_comment").before("<%=j render @comment %>")
 $("#new_comment textarea").val('')
-$("#comment-count").html('<%= @talk.comments.size %>')
+$("#comment-count").html('<%= @talk.comments.count %>')
+$(".comments > h4").html("<%= pluralize @talk.comments.count, 'comment' %>")

@@ -65,7 +65,7 @@
         <%= markdown(@talk.overview) || content_tag(:p, @talk.description) %>
         <%= render @talk.tags %>
       </section>
-      <section class='pad0y'>
+      <section class='pad0y comments'>
         <a id='comments'></a>
         <h4><%= pluralize @comments.size, 'comment' %></h4>
         <%= render @comments %>

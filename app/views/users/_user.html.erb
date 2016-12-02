@@ -1,29 +1,29 @@
 <%= content_tag :li, id: "user_#{user.id}", 
                 class: user_iteration.last? ? 
-                  "user pad2y" : "user pad2y keyline-bottom" do %>
-  <div class="media contain">
+                  'user pad2y' : 'user pad2y keyline-bottom' do %>
+  <div class='media contain'>
     <%= link_to user_path(user), class: 'media-left pad1r' do %>
       <%= avatar_for user, class: 'img-rounded', width: '85', alt: 'Hero' %>
     <% end %>
-    <div class="media-body pad0l">
+    <div class='media-body pad0l'>
       <h4><%= user.full_name %></h4>
-      <p class="hidden-xs">Product designer at Bluth Company</p>
-      <ul class="stats">
-        <li class="inline pad2r hidden-xs">
-          <strong class="block space-bottom0 small"><%= user.talks.size %></strong>
-          <small class="quiet">Talks</small>
+      <p class='hidden-xs'><%= user.bio %></p>
+      <ul class='stats'>
+        <li class='inline pad2r hidden-xs'>
+          <strong class='block space-bottom0 small'><%= user.talks.size %></strong>
+          <small class='quiet'>Talks</small>
         </li>
-        <li class="inline pad2x keyline-left followers">
-          <strong class="block space-bottom0 small"><%= user.followers.size %></strong>
-          <small class="quiet">Followers</small>
+        <li class='inline pad2x keyline-left followers'>
+          <strong class='block space-bottom0 small'><%= user.followers.size %></strong>
+          <small class='quiet'>Followers</small>
         </li>
-        <li class="inline pad2x keyline-left following">
-          <strong class="block space-bottom0 small"><%= user.followed_users.size %></strong>
-          <small class="quiet">Following</small>
+        <li class='inline pad2x keyline-left following'>
+          <strong class='block space-bottom0 small'><%= user.followed_users.size %></strong>
+          <small class='quiet'>Following</small>
         </li>
-        <li class="inline pad2x keyline-left hidden-xs">
-          <strong class="block space-bottom0 small"><%= user.favorites.size %></strong>
-          <small class="quiet">Favorites</small>
+        <li class='inline pad2x keyline-left hidden-xs'>
+          <strong class='block space-bottom0 small'><%= user.favorites.size %></strong>
+          <small class='quiet'>Favorites</small>
         </li>
       </ul>
     </div>
