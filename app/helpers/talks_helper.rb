@@ -35,4 +35,17 @@ module TalksHelper
       [talk.meeting]
     end
   end
+
+  def attachment_name(url)
+    path = URI.parse(url).path
+    File.basename(path)
+  end
+
+  def attachment_link(attachment)
+    if attachment
+      link_to @talk.attachment, class: 'btn btn-success' do
+        concat content_tag :i, nil, class: 'icon icon-download-alt'
+      end
+    end
+  end
 end
