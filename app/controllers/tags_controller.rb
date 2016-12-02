@@ -5,6 +5,6 @@ class TagsController < ApplicationController
 
   def show
     @tag = ActsAsTaggableOn::Tag.find(params[:id])
-    @talks = Talk.tagged_with(@tag)
+    @talks = Talk.tagged_with(@tag).page(params[:page])
   end
 end
