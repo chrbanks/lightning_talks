@@ -2,6 +2,7 @@ class TalksController < ApplicationController
   before_action :set_user, only: [:index]
   before_action :set_meeting, only: [:new]
   before_action :set_talk, only: [:show, :edit, :update, :destroy]
+  before_action :set_s3_direct_post, only: [:new, :create, :edit, :update]
 
   def index
     @talks = @user.talks.latest.page(params[:page])
@@ -71,6 +72,14 @@ class TalksController < ApplicationController
   def talk_params
     params.require(:talk)
           .permit(:meeting_id, :title, :user_id, :description, :category,
-                  :overview, :tag_list)
+                  :overview, :tag_list, :attachment)
+  end
+
+  def set_s3_direct_post
+    @s3_direct_post = S3_BUCKET.presigned_post({
+      key: "uploads/#{SecureRandom.uuid}/${filename}",
+      success_action_status: '201',
+      acl: 'public-read'
+    })
   end
 end

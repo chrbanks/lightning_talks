@@ -25,6 +25,7 @@ gem 'github-markdown'
 gem 'html-pipeline-rouge_filter'
 gem 'gemoji'
 gem 'jquery-atwho-rails'
+gem 'aws-sdk', '~> 2'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
