@@ -1,7 +1,7 @@
 module TalksHelper
 
-  def category_for(talk)
-    presenter = Category.new(talk.category, self)
+  def category_for(category)
+    presenter = Category.new(category, self)
     if block_given?
       yield presenter
     else

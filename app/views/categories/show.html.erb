@@ -1,9 +1,10 @@
-<%= currently_at 'Category' %>
+<%= currently_at 'Tags' %>
 
 <header class='inset-header dark'>
   <div class='container-fluid contain clearfix'>
     <div>
-      <h1>Talks in <%= @category %>:</h1>
+      <h1>Talks with category:</h1>
+      <div class='pad1y'><%= category_for(params[:id]) %></div>
       <ul class='actions pin-bottomright'>
         <li>
           <%= link_to 'See all categories', categories_path, class: 'btn btn-success' %>
@@ -17,4 +18,5 @@
   <div class='contain clearfix talks'>
     <%= render @talks %>
   </div>
+  <%= paginate @talks %>
 </div>

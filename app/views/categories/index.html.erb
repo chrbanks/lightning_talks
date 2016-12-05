@@ -1,0 +1,16 @@
+<%= currently_at 'Categories' %>
+
+<header class='dark pad4y'>
+  <div class='container-fluid contain clearfix'>
+    <h1>All Categories</h1>
+    <p class='lead quiet'>See everything with a certain category</p>
+  </div>
+</header>
+
+<div class='container-fluid contain space-bottom4 dark'>
+  <ul>
+    <% @categories.each do |category| %>
+      <li class='block space-bottom1'><%= category_for(category) %></li>
+    <% end %>
+  </ul>
+</div>
