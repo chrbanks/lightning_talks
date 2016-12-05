@@ -23,21 +23,21 @@ class UsersController < ApplicationController
   end
 
   def followers
-    @users ||= @user.followers.page(params[:page])
+    @users = @user.followers.page(params[:page])
   end
 
   def following
-    @users ||= @user.followed_users.page(params[:page])
+    @users = @user.followed_users.page(params[:page])
   end
 
   def speakers
-    @users ||= User.speaker.order(:email).page(params[:page])
+    @users = User.speaker.order(:email).page(params[:page])
   end
 
   private
 
   def set_user
-    @user ||= User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def correct_user
