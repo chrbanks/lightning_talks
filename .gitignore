@@ -36,9 +36,13 @@ config/initializers/secret_token.rb
 
 # Configurations
 ################
-# config/database.yml
-# config/secrets.yml
+config/database.yml
+config/secrets.yml
 config/aws.yml
+config/environments/development.rb
+config/environments/production.rb
+config/environments/staging.rb
+config/environments/test.rb
 
 # Packages
 ##########
