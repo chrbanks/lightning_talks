@@ -37,8 +37,10 @@ module TalksHelper
   end
 
   def attachment_name(url)
-    path = URI.parse(url).path
-    File.basename(path)
+    unless url.nil?
+      path = URI.parse(url).path
+      File.basename(path)
+    end
   end
 
   def attachment_link(attachment)
